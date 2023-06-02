@@ -1,0 +1,856 @@
+{% extends 'base.html' %} {% load static %} {% load cart %} {% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+
+<link
+  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+{% endblock %} {% block content %}
+
+{% if catee %}
+
+<div class="ltn__product-area ltn__product-gutter mb-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
+          <!-- Category Widget -->
+          <div class="widget ltn__menu-widget">
+            <h4 class="ltn__widget-title ltn__widget-title-border">
+              Product categories
+            </h4>
+            <ul>
+              <form method="get" action="">
+                {% for category in cat %}
+                <li>
+                  <input
+                    type="submit"
+                    name="cate"
+                    style="
+                      width: 100%;
+                      height: 15px;
+                      border: none;
+                      color: black;
+                      font-size: 13px;
+                      padding-left: 0px;
+                      padding-right: 0px;
+                      margin: 0px;
+                      background: white;
+                      text-align:left;
+                    "
+                    value="{{category.name}}"
+                  />
+                </li>
+                {% endfor %}
+              </form>
+            </ul>
+          </div>
+          <div class="widget ltn__menu-widget">
+            <h4 class="ltn__widget-title ltn__widget-title-border">
+              Product Brands
+            </h4>
+            <ul>
+              <form method="get" action="">
+                {% for category in prod_brand %}
+                <li>
+                  <input
+                    type="submit"
+                    name="brand"
+                    style="
+                      width: 100%;
+                      height: 15px;
+                      border: none;
+                      color: black;
+                      font-size: 13px;
+                      padding-left: 0px;
+                      padding-right: 0px;
+                      margin: 0px;
+                      background: white;
+                      text-align:left;
+                    "
+                    value="{{category.name}}"
+                  />
+                </li>
+                {% endfor %}
+              </form>
+            </ul>
+          </div>
+
+          <!-- Search Widget -->
+       
+
+      
+          
+
+          <!-- Banner Widget -->
+          <div class="widget ltn__banner-widget">
+            <a href="{% url 'Store'%}"
+              ><img src="{% static 'img/banner-2.jpg' %}" style="height:50%, width:50%;" alt="#"
+            /></a>
+          </div>
+        </aside>
+      </div>
+      <div class="col-lg-9">
+        <div class="ltn__shop-options">
+          <ul>
+            <li>
+              <div class="ltn__grid-list-tab-menu">
+                <div class="nav">
+                  <a
+                    class="active show"
+                    data-bs-toggle="tab"
+                    href="#liton_product_grid"
+                    ><i class="fas fa-th-large"></i
+                  ></a>
+                  <a data-bs-toggle="tab" href="#liton_product_list"
+                    ><i class="fas fa-list"></i
+                  ></a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="showing-product-number text-right">
+                <span>Showing 1–12 of {{catee.count}} results</span>
+              </div>
+            </li>
+            <li>
+              <div class="short-by text-center">
+               
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="liton_product_grid">
+            <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+              <div class="row">
+                <!-- ltn__product-item -->
+                {% for i in catee %}
+                <div class="col-xl-3 col-sm-6 col-6">
+                  <div
+                    class="ltn__product-item ltn__product-item-3 text-center"
+                  >
+                    <div class="product-img">
+                      {% if i.image1 %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{{i.image1.url}}" style="height:150px; width:150px;" alt="{{i.name}}"
+                      /></a>
+                      {% else %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{% static 'img/image.jpg'%}" style="height:150px; width:150px;" alt="#"
+                      /></a>
+                      {% endif %}
+                      <div class="product-badge">
+                        <ul>
+                          <li class="sale-badge">New</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <h2 class="product-title">
+                        <a href="vendor_product/{{i.slug}}">{{i.name}}</a>
+                      </h2>
+                      <div class="product-price">
+                        
+                        <span>₹{{i.price}}</span>
+                        <del>₹{{i.mrp}}</del>
+
+                       
+                      </div>
+                      <div class="ltn__product-details-menu-2">
+                        <ul>
+                          
+                          <li>
+                            
+                            
+                            <button class="btn theme-btn-2 btn-effect-2"><i class="fas fa-shopping-cart"></i><a href="vendor_product/{{i.slug}}" >Add to Cart</a></button>
+                            
+                          </li>
+                          
+                          
+                        </ul>
+                      </div>
+              
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="liton_product_list">
+            <div class="ltn__product-tab-content-inner ltn__product-list-view">
+              <div class="row">
+                <!-- ltn__product-item -->
+                <div class="col-lg-12">
+                  {% for i in catee %}
+
+                  <div class="ltn__product-item ltn__product-item-3">
+                    <div class="product-img">
+                      {% if i.image1 %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{{i.image1.url}}" style="height:150px; width:150px;" alt="{{i.name}}"
+                      /></a>
+                      {% else %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{% static 'img/image.jpg'%}" style="height:150px; width:150px;" alt="#"
+                      /></a>
+                      {% endif %}
+                      <div class="product-badge">
+                        <ul>
+                          <li class="sale-badge">New</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <h2 class="product-title">
+                        <a href="vendor_product/{{i.slug}}">{{i.name}}</a>
+                      </h2>
+
+                      <div class="product-price">
+                        {% if user.is_authenticated %} {% if user.is_customer %}
+                        <span>₹{{i.price}}</span>
+                        <del>₹{{i.mrp}}</del>
+
+                        {% endif %} {% endif %}
+                      </div>
+                      <div class="product-brief">
+                        <p>{{i.description|safe | truncatechars:40}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                <!--  -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ltn__pagination-area text-center">
+          <div class="ltn__pagination">
+            <ul>
+              {% if page_obj1.has_previous %}
+              <li>
+                <a href="?page={{ page_obj1.previous_page_number }}"
+                  ><i class="fas fa-angle-double-left"></i
+                ></a>
+              </li>
+              {% else %}
+              <li>
+                <a aria-disabled="True"
+                  ><i class="fas fa-angle-double-left"></i
+                ></a>
+              </li>
+
+              {% endif %} 
+              {% for i in page_obj1.paginator1.get_elided_page_range %} 
+              {% if i == page_obj1.paginator1.ELLIPSIS %}
+              <li><a class="active">{{i}}</a></li>
+              {% else %}
+              <li><a class="active" href="?page={{ i }}">{{i}}</a></li>
+              {% endif %} 
+              {% endfor %} 
+              {% if page_obj1.has_next %}
+              <li>
+                <a href="?page={{ page_obj1.next_page_number }}"
+                  ><i class="fas fa-angle-double-right"></i
+                ></a>
+              </li>
+              {% else %}
+              <li>
+                <a aria-disabled="True"
+                  ><i class="fas fa-angle-double-right"></i
+                ></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+{% elif brand %}
+<div class="ltn__product-area ltn__product-gutter mb-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
+          <!-- Category Widget -->
+          <div class="widget ltn__menu-widget">
+            <h4 class="ltn__widget-title ltn__widget-title-border">
+              Product categories
+            </h4>
+            <ul>
+              <form method="get" action="">
+                {% for category in cat %}
+                <li>
+                  <input
+                    type="submit"
+                    name="cate"
+                    style="
+                      width: 100%;
+                      height: 15px;
+                      border: none;
+                      color: black;
+                      font-size: 13px;
+                      padding-left: 0px;
+                      padding-right: 0px;
+                      margin: 0px;
+                      background: white;
+                      text-align:left;
+                    "
+                    value="{{category.name}}"
+                  />
+                </li>
+                {% endfor %}
+              </form>
+            </ul>
+          </div>
+          <div class="widget ltn__menu-widget">
+            <h4 class="ltn__widget-title ltn__widget-title-border">
+              Product Brands
+            </h4>
+            <ul>
+              <form method="get" action="">
+                {% for category in prod_brand %}
+                <li>
+                  <input
+                    type="submit"
+                    name="brand"
+                    style="
+                      width: 100%;
+                      height: 15px;
+                      border: none;
+                      color: black;
+                      font-size: 13px;
+                      padding-left: 0px;
+                      padding-right: 0px;
+                      margin: 0px;
+                      background: white;
+                      text-align:left;
+                    "
+                    value="{{category.name}}"
+                  />
+                </li>
+                {% endfor %}
+              </form>
+            </ul>
+          </div>
+
+          <!-- Search Widget -->
+       
+
+         
+
+          <!-- Banner Widget -->
+          <div class="widget ltn__banner-widget">
+            <a href="{% url 'Store'%}"
+              ><img src="{% static 'img/banner-2.jpg' %}" style="height:50%, width:50%;" alt="#"
+            /></a>
+          </div>
+        </aside>
+      </div>
+      <div class="col-lg-9">
+        <div class="ltn__shop-options">
+          <ul>
+            <li>
+              <div class="ltn__grid-list-tab-menu">
+                <div class="nav">
+                  <a
+                    class="active show"
+                    data-bs-toggle="tab"
+                    href="#liton_product_grid"
+                    ><i class="fas fa-th-large"></i
+                  ></a>
+                  <a data-bs-toggle="tab" href="#liton_product_list"
+                    ><i class="fas fa-list"></i
+                  ></a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="showing-product-number text-right">
+                <span>Showing 1–12 of {{brand.count}} results</span>
+              </div>
+            </li>
+            <li>
+              <div class="short-by text-center">
+               
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="liton_product_grid">
+            <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+              <div class="row">
+                <!-- ltn__product-item -->
+                {% for i in brand %}
+                <div class="col-xl-3 col-sm-6 col-6">
+                  <div
+                    class="ltn__product-item ltn__product-item-3 text-center"
+                  >
+                    <div class="product-img">
+                      {% if i.image1 %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{{i.image1.url}}" style="height:150px; width:150px;" alt="{{i.name}}"
+                      /></a>
+                      {% else %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{% static 'img/image.jpg'%}" style="height:150px; width:150px;" alt="#"
+                      /></a>
+                      {% endif %}
+                      <div class="product-badge">
+                        <ul>
+                          <li class="sale-badge">New</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <h2 class="product-title">
+                        <a href="vendor_product/{{i.slug}}">{{i.name}}</a>
+                      </h2>
+                      <div class="product-price">
+                        
+                        <span>₹{{i.price}}</span>
+                        <del>₹{{i.mrp}}</del>
+
+                      </div>
+                      <a href="vendor_product/{{i.slug}}" class="btn theme-btn-2 btn-effect-2"><i class="fas fa-shopping-cart"></i>Add to Cart</a>
+                     
+              
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="liton_product_list">
+            <div class="ltn__product-tab-content-inner ltn__product-list-view">
+              <div class="row">
+                <!-- ltn__product-item -->
+                <div class="col-lg-12">
+                  {% for i in brand %}
+
+                  <div class="ltn__product-item ltn__product-item-3">
+                    <div class="product-img">
+                      {% if i.image1 %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{{i.image1.url}}" style="height:150px; width:150px;" alt="{{i.name}}"
+                      /></a>
+                      {% else %}
+                      <a href="vendor_product/{{i.slug}}"
+                        ><img src="{% static 'img/image.jpg'%}" style="height:150px; width:150px;" alt="#"
+                      /></a>
+                      {% endif %}
+                      <div class="product-badge">
+                        <ul>
+                          <li class="sale-badge">New</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <h2 class="product-title">
+                        <a href="vendor_product/{{i.slug}}">{{i.name}}</a>
+                      </h2>
+
+                      <div class="product-price">
+                        {% if user.is_authenticated %} {% if user.is_customer %}
+                        <span>₹{{i.price}}</span>
+                        <del>₹{{i.mrp}}</del>
+
+                        {% endif %} {% endif %}
+                      </div>
+                      <div class="product-brief">
+                        <p>{{i.description|safe | truncatechars:40}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                <!--  -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ltn__pagination-area text-center">
+          <div class="ltn__pagination">
+            <ul>
+              {% if page_obj12.has_previous %}
+              <li>
+                <a href="?page={{ page_obj12.previous_page_number }}"
+                  ><i class="fas fa-angle-double-left"></i
+                ></a>
+              </li>
+              {% else %}
+              <li>
+                <a aria-disabled="True"
+                  ><i class="fas fa-angle-double-left"></i
+                ></a>
+              </li>
+
+              {% endif %} 
+              {% for i in page_obj12.paginator12.get_elided_page_range %} 
+              {% if i == page_obj12.paginator12.ELLIPSIS %}
+              <li><a class="active">{{i}}</a></li>
+              {% else %}
+              <li><a class="active" href="?page={{ i }}">{{i}}</a></li>
+              {% endif %} 
+              {% endfor %} 
+              {% if page_obj12.has_next %}
+              <li>
+                <a href="?page={{ page_obj12.next_page_number }}"
+                  ><i class="fas fa-angle-double-right"></i
+                ></a>
+              </li>
+              {% else %}
+              <li>
+                <a aria-disabled="True"
+                  ><i class="fas fa-angle-double-right"></i
+                ></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+{% else %}
+
+<!-- PRODUCT DETAILS AREA START -->
+<div class="ltn__product-area ltn__product-gutter mb-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
+          <!-- Category Widget -->
+          <div class="widget ltn__menu-widget">
+            <h4 class="ltn__widget-title ltn__widget-title-border">
+              Product categories
+            </h4>
+            <form method="get" action="">
+            <ul>
+                {% for category in cat %}
+                <li>
+                  
+                  <input
+                    type="submit"
+                    name="cate"
+                    style="
+                      width: 100%;
+                      height: 20px;
+                      border: none;
+                      color: black;
+                      font-size: 13px;
+                      padding-left: 0px;
+                      padding-right: 0px;
+                      margin: 0px;
+                      background: white;
+                      text-align:left;
+                    "
+                    value="{{category.name}}"
+                  />
+                </li>
+                
+                {% endfor %}
+              </ul>
+            </form>
+          </div>
+          <div class="widget ltn__menu-widget">
+            <h4 class="ltn__widget-title ltn__widget-title-border">
+              Product Brands
+            </h4>
+            <form method="get" action="">
+            <ul>
+                {% for category in prod_brand %}
+                <li>
+                  
+                  <input
+                    type="submit"
+                    name="brand"
+                    style="
+                      width: 100%;
+                      height: 20px;
+                      border: none;
+                      color: black;
+                      font-size: 13px;
+                      padding-left: 0px;
+                      padding-right: 0px;
+                      margin: 0px;
+                      background: white;
+                      text-align:left;
+                    "
+                    value="{{category.name}}"
+                  />
+                </li>
+                
+                {% endfor %}
+              </ul>
+            </form>
+          </div>
+
+          
+          <!-- Banner Widget -->
+          <div class="widget ltn__banner-widget">
+            <a href="{% url 'Store' %}"
+              ><img src="{% static 'img/banner-2.jpg' %}" alt="#"
+            /></a>
+          </div>
+        </aside>
+      </div>
+      <div class="col-lg-9">
+        <div class="ltn__shop-options">
+          <ul>
+            <li>
+              <div class="ltn__grid-list-tab-menu">
+                <div class="nav">
+                  <a
+                    class="active show"
+                    data-bs-toggle="tab"
+                    href="#liton_product_grid"
+                    ><i class="fas fa-th-large"></i
+                  ></a>
+                  <a data-bs-toggle="tab" href="#liton_product_list"
+                    ><i class="fas fa-list"></i
+                  ></a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="showing-product-number text-right">
+                <span>Showing 1–12 of {{pp.count}} results</span>
+              </div>
+            </li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="liton_product_grid">
+            <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+              <div class="row">
+                <!-- ltn__product-item -->
+                {% for product in page_obj %}
+                <div class="col-xl-3 col-sm-6 col-6">
+                  <div
+                    class="ltn__product-item ltn__product-item-3 text-center"
+                    id="{{product.id}}"
+                  >
+                    <div class="product-img">
+                      {% if product.image1 %}
+                      <a href="vendor_product/{{product.slug}}"
+                        ><img src="{{product.image1.url}}" style="height:150px; width:150px;" alt="{{product.name}}"
+                      /></a>
+                      {% else %}
+                      <a href="vendor_product/{{product.slug}}"
+                        ><img src="{% static 'img/image.jpg' %}" style="height:150px; width:150px;" alt="{% static 'img/image.jpg' %}"
+                      /></a>
+                      {% endif %}
+                      <div class="product-badge">
+                        <ul>
+                          <li class="sale-badge">New</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <h2 class="product-title">
+                        <a href="vendor_product/{{product.slug}}">{{product.name| safe | truncatechars:40}} </a>
+                      </h2>
+                      <div class="product-price">
+                       
+                        <span>₹{{product.price}}</span>
+                        <del>₹{{product.mrp}}</del>
+                       
+                         
+                        <div class="ltn__product-details-menu-2">
+                          <ul>
+                            
+                            <li>
+                              
+                              
+                              <button class="btn theme-btn-2 btn-effect-2"><i class="fas fa-shopping-cart"></i><a href="vendor_product/{{product.slug}}" >Add to Cart</a></button>
+                              
+                            </li>
+                            
+                            
+                          </ul>
+                        </div>
+                      
+                     
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="liton_product_list">
+            <div class="ltn__product-tab-content-inner ltn__product-list-view">
+              <div class="row">
+                <!-- ltn__product-item -->
+                <div class="col-lg-12">
+                  {% for product in page_obj %}
+                  <div class="ltn__product-item ltn__product-item-3" style="height:175px !important;">
+                    <div class="product-img">
+                      {% if product.image1 %}
+                      <a href="vendor_product/{{product.slug}}"
+                        ><img
+                          src="{{product.image1.url}}" style="height:150px; width:150px;"
+                      
+                          alt="{{product.name}}"
+                      /></a>
+                      {% else %}
+                      <a href="vendor_product/{{product.slug}}"
+                        ><img
+                          src="{% static 'img/image.jpg'%}" style="height:150px; width:150px;"
+                         
+                          alt="{% static 'img/image.jpg' %}"
+                      /></a>
+                      {% endif %}
+                      <div class="product-badge">
+                        <ul>
+                          <li class="sale-badge">New</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <h2 class="product-title">
+                        <a href="vendor_product/{{product.slug}}">{{product.name}}</a>
+                      </h2>
+
+                      <div class="product-price">
+                        {% if user.is_authenticated %} {% if user.is_customer %}
+                        <span>₹{{product.price}}</span>
+                        <del>₹{{product.mrp}}</del>
+
+                        {% endif %} {% endif %}
+                      </div>
+                      <div class="product-brief">
+                        <p>{{product.description|safe | truncatechars:40}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                <!--  -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ltn__pagination-area text-center">
+          <div class="ltn__pagination">
+            <ul>
+              {% if page_obj.has_previous %}
+              <li>
+                <a href="?page={{ page_obj.previous_page_number }}"
+                  ><i class="fas fa-angle-double-left"></i
+                ></a>
+              </li>
+              {% else %}
+              <li>
+                <a aria-disabled="True"
+                  ><i class="fas fa-angle-double-left"></i
+                ></a>
+              </li>
+
+              {% endif %} 
+              {% for i in page_obj.paginator.get_elided_page_range %} 
+              {% if i == page_obj.paginator.ELLIPSIS %}
+              <li><a class="active">{{i}}</a></li>
+              {% else %}
+              <li><a class="active" href="?page={{ i }}">{{i}}</a></li>
+              {% endif %} 
+              {% endfor %} 
+              {% if page_obj.has_next %}
+              <li>
+                <a href="?page={{ page_obj.next_page_number }}"
+                  ><i class="fas fa-angle-double-right"></i
+                ></a>
+              </li>
+              {% else %}
+              <li>
+                <a aria-disabled="True"
+                  ><i class="fas fa-angle-double-right"></i
+                ></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!-- PRODUCT DETAILS AREA END -->
+
+<!-- CALL TO ACTION START (call-to-action-6) -->
+<div
+  class="ltn__call-to-action-area call-to-action-6 before-bg-bottom"
+  data-bs-bg="img/1.jpg--"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div
+          class="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg position-relative text-center---"
+        >
+          <div class="coll-to-info text-color-white">
+            <h1>
+              Buy medical disposable face mask <br />
+              to protect your loved ones
+            </h1>
+          </div>
+          <div class="btn-wrapper">
+            <a class="theme-btn-2 btn btn-effect-2" href="Store"
+              >Explore Products <i class="fas fa-arrow-alt-circle-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- CALL TO ACTION END -->
+
+<!-- FOOTER AREA START -->
+{% endif %}
+{% endblock%}

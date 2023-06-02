@@ -1,0 +1,95 @@
+{% extends 'base.html' %} {% load static %} {% load cart %} {% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+
+<link
+  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+{% endblock %} {% block content %}
+
+<div class="body-wrapper">
+
+ 
+    
+    <!-- PRODUCT DETAILS AREA START -->
+    <div class="ltn__product-area ltn__product-gutter mb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <div class="tab-content">
+                      
+                        <div class="tab-pane fade active show" id="liton_product_list">
+                            <div class="ltn__product-tab-content-inner ltn__product-list-view">
+                                <div class="row">
+                                    <!-- ltn__product-item -->
+                                    {% for user in users %}
+                                    <div class="col-lg-12">
+                                        <div class="ltn__product-item ltn__product-item-3" style="height:150px;">
+                                            {% comment %} <div class="product-img">
+                                                <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
+                                                <div class="product-badge">
+                                                    <ul>
+                                                        <li class="sale-badge">New</li>
+                                                    </ul>
+                                                </div>
+                                            </div> {% endcomment %}
+                                            <div class="product-info">
+                                                <h2 class="product-title"><a href="product-details.html">{{user.first_name}}</a></h2>
+                                                <div class="product-ratting">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+                
+            </div>
+        </div>
+    </div>
+ 
+
+</div>
+
+{% endblock %}

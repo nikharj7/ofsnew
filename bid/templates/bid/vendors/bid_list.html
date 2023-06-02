@@ -1,0 +1,278 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} {% block content %}
+
+<div class="container my-3">
+  <h2 class="mb-2">Bids</h2>
+  <hr  style="margin:10px;">
+  <h5 class="mt-2">Bid related Important Notes</h5>
+  <ol>
+    <li><strong>
+      Charges - We charge ₹ x amount as a genunity of bid. </strong>
+</li>
+<li><strong>
+    Order Prepare time upto 15 days from order place.</strong>
+</li> 
+<li><strong>
+    Payment Terms - After succesful delivery and customer positive response we'll transfer order amont within 7 days.</strong>
+</li>
+ <li><strong>
+     If you don't get Order we refund your bid security amount to your source account within 7 days after Bid completion.</strong>
+</li>
+
+
+
+</ol>
+<hr  style="margin:10px;">
+
+
+  {% if nav  %} {% for requirement in nav %}
+
+
+
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Requirement ID: {{requirement.product_id}}</strong></p>
+        </div>
+        <div class="col-md-6">
+          {% if requirement.requirement_status == "APPROVED" %} 
+          {% if requirement.Ordered == "YES" %}
+          <p style="color: red"><strong>Bid Closed</strong></p>
+          {% else %}
+
+          <p style="color:red;"><strong>Bid end in : {{requirement.bidding_expiry|date:"M d, Y H:i:s A"}}</strong></p>
+     
+          {% endif %} 
+          {% endif %}
+          <div class="col-md-6">
+            {% if requirement.requirement_status == "DISABLED" %}
+            <p style="color: red"><strong> Bid Closed. </strong></p>
+            {%endif%}
+            {% if requirement.requirement_status == "EXPIRED" %}
+            <p style="color: red"><strong> Bid Closed </strong></p>
+            {%endif%}
+          </div>
+        </div>
+        <hr style="width:96%;">
+        <div class="row">
+          <div class="col-md-3">
+            <img
+              src="{{requirement.product_image_1.url}}"
+              style="height: 70%; width: 70%"
+            />
+          </div>
+          <div class="col-md-3">
+            <div class="row my-2">
+              <strong
+                >Product Name : {{ requirement.name }}
+              </strong>
+            </div><br>
+            <div class="row my-2">
+              <strong>Bid Start Price : {{ requirement.start_price }} </strong>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row my-2">
+              <strong>Category : {{ requirement.category }} </strong>
+            </div><br>
+            <div class="row my-2">
+              <strong>Brand : {{ requirement.brand }} </strong>&nbsp;
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="row my-2">
+              <strong
+                >Expected Delivery Days : {{requirement.Exp_delivery_days}}</strong
+              >
+              </div><br>
+              <div class="row my-2">
+                <strong>Quantity : {{ requirement.quantity }}</strong>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <hr style="margin: 10px; width:96%;">
+
+          {% if requirement.requirement_status == "APPROVED" %} 
+          {% if requirement.Ordered == "YES" %}
+          <p></p>
+          {% else %}
+          <form action="" method="post"> {% csrf_token %}
+            <div class="float-right">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="background: #000000;"
+                >Pay and Participate in Bid</button
+              >
+            </div>
+          </form>
+          {% endif %} 
+    {% endif %}
+        </div>
+      </div>
+      
+    </div>
+    
+ 
+    {% endfor %}
+  </div>  
+
+  {% elif data2  %} 
+  {% for requirement in data2 %}
+
+
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Bid ID: {{requirement.product_id}}</strong></p>
+          </div>
+          <div class="col-md-6">
+            {% if requirement.requirement_status == "APPROVED" %} 
+            {% if requirement.Ordered == "YES" %}
+            <p style="color: red"><strong>Bid Closed</strong></p>
+            {% else %}
+
+            <p style="color:red;"><strong>Bid ends on : {{requirement.bidding_expiry}}</strong></p>
+
+            {% endif %} 
+            {% endif %}
+            <div class="col-md-6">
+              {% if requirement.requirement_status == "DISABLED" %}
+              <p style="color: red"><strong> Bid Closed. </strong></p>
+              {%endif%}
+              {% if requirement.requirement_status == "EXPIRED" %}
+              <p style="color: red"><strong> Bid Closed </strong></p>
+              {%endif%}
+            </div>
+          </div>
+          <hr style="width:96%;">
+          <div class="row">
+            <div class="col-md-3">
+              <img
+                src="{{requirement.product_image_1.url}}"
+                style="height: 70%; width: 70%"
+              />
+            </div>
+            <div class="col-md-3">
+              <div class="row my-2">
+                <strong
+                  >Product Name : {{ requirement.name }}
+                </strong>
+              </div><br>
+              <div class="row my-2">
+                <strong>Bid Start Price : {{ requirement.start_price }} </strong>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="row my-2">
+                <strong>Category : {{ requirement.category }} </strong>
+              </div><br>
+              <div class="row my-2">
+                <strong>Brand : {{ requirement.brand }} </strong>&nbsp;
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="row my-2">
+                <strong
+                  >Expected Delivery Days : {{requirement.Exp_delivery_days}}</strong
+                >
+                </div><br>
+                <div class="row my-2">
+                  <strong>Quantity : {{ requirement.quantity }}</strong>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <hr style="margin: 10px; width:96%;">
+            
+      
+            {% if requirement.requirement_status == "APPROVED" %} 
+            {% if requirement.Ordered == "YES" %}
+            <p></p>
+            {% else %}
+            <form action="" method="post"> {% csrf_token %}
+            <div class="float-left">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="background: #000000; border: #000000"
+                >Pay and Participate in Bid</button
+              >
+            </div>
+          </form>
+          {% endif %} 
+    {% endif %}
+        </div>
+      </div>
+    </div> 
+    
+  
+    {% endfor %}
+  {% else %}
+  <div class="card" style="border-top: 3px solid #fbb203">
+    <div class="clearfix"></div>
+    <div class="card-body">
+  <h6 style="text-align: center;">No ongoing bids are running.</h6>
+    </div>
+  </div>
+  {% endif %} 
+
+  <form method="post">
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      <script>
+        var options = {
+            key: "rzp_test_pTZOyjXKteceyT",
+            amount: {{razorpay_order.amount}},
+            currency: "INR",
+            name: "OrderForSure",
+            description: "Bid Security Amount",
+            image: "https://imgur.com/NOWiBu9",
+            order_id: "{{razorpay_order.id}}",
+            callback_url: "{{callback_url}}",
+            redirect: true,
+            prefill: {
+                "name": "{{request.user}}",
+                "email": "{{request.user}}",
+                "contact": "{{data.Phone}}"
+            },
+            theme: {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+      </script>
+  </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<div class="item">
+  <label for="org_name">Name<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.name}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Category<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.category}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Brand<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.brand}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Bid Start Price<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.start_price}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Quantity<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.quantity}}' readonly='readonly'/>
+</div>
+
+<div class="item">
+  <label for="org_name">Description<span>*</span></label>
+  <textarea class="textarea form-control" id="org_name"  type="text" name="org_name" readonly='readonly'/>{{nav.description}}</textarea>
+</div>
+<div class="item">
+  <label for="org_name">Created At<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.created_at}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Contact Number<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.delivery_contact}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Delivery Address<span>*</span></label>
+  <textarea class="textarea form-control" id="org_name"  type="text" name="org_name"  readonly='readonly'>{{nav.delivery_address}}</textarea>
+</div>
+<div class="item">
+  <label for="org_name">Product Reference Number<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.product_ref_no}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Delivery Pincode<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{nav.delivery_pincode}}' readonly='readonly'/>
+</div>
+<br>
+<div>
+</div>
+</div>
+{% endblock %}

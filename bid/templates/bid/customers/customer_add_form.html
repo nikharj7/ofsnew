@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart %}
+{% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} 
+{% block content %}
+{% if data.customer_id%}
+
+
+    <form >
+
+      
+      <div class="container my-4">
+        
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Orgnization Name  </label>
+          <input
+          disabled
+            type="text"
+            class="form-control"
+            value="{{data.Orgnization_Name}}"
+            name="org"
+            
+          />
+        </div>
+       <div class="form-group">
+          <label for="exampleFormControlInput1">Full Name</label>
+          <input
+          disabled
+            type="text"
+            class="form-control"
+            value="{{data.Full_Name}}"
+            name="fname"
+            placeholder="Full Name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Phone</label>
+          <input
+          disabled
+            type="number"
+            class="form-control"
+            value="{{data.Phone}}"
+            name="phone"
+            placeholder="Phone"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Address</label>
+          <input
+          disabled
+            type="text"
+            class="form-control"
+            value="{{data.Address}}"
+            name="address"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Pincode</label>
+          <input
+          disabled
+            type="number"
+            class="form-control"
+            value="{{data.Pincode}}"
+            name="pincode"
+            placeholder="Pincode"
+            required
+            maxlength="6"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">State</label>
+          <input
+          disabled
+            type="text"
+            class="form-control"
+            value={{data.State}}
+            name="state"
+            placeholder="State"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">City</label>
+          <input
+          disabled
+            type="text"
+            class="form-control"
+            value={{data.City}}
+            name="city"
+            placeholder="City"
+          />
+        </div>
+        {% if data.GST_IN %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">GST IN</label>
+          <input
+          disabled
+            type="text"
+            class="form-control"
+            value={{data.GST_IN}}
+            name="gst"
+            placeholder="GST IN"
+          />
+        </div>
+        {% endif %}
+        {% if data.License_Number %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">License Number</label>
+          <input
+          disabled
+            type="text"
+            class="form-control"
+            value={{data.License_Number}}
+            name="license"
+            placeholder="License Number"
+          />
+        </div>
+        {% endif %}
+      </div> 
+    </form>
+{% endif %}
+  {% endblock %}

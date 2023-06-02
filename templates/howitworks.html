@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart %}
+{% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css'%}' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css'%}' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+<link rel="stylesheet" href="{%static 'css/animate.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/all.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/boxicons.min.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/bootstrap-icons.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/jquery-ui.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/swiper-bundle.min.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/slick-theme.css'%}">
+<link rel="stylesheet" href="{%static 'css/slick.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/nice-select.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/magnific-popup.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/odometer.css'%}">
+
+<link rel="stylesheet" href="{%static 'css/style999.css'%}">
+{% endblock %} 
+{% block content %}
+<h1 style="text-align:center;"><strong>How Our Bidding Module Works</strong></h1>
+<div class="how-work-section pt-100 pb-120">
+    <img alt="image" src="{%static 'img/section-bg.png'%}" class="section-bg-top">
+    <div class="container">
+    <div class="row g-4 mb-60">
+    <div class="col-xl-6 col-lg-6">
+    <div class="how-work-content wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+    <span> Step 01</span>
+    <h3>Register Now & sell or buy from OrderforSure</h3>
+    <p class="para">How to register yourself? In order to enter this bidding system, you need to create your account by clicking on the 'Register' button below.</p>
+    <p class="para">OrderforSure is the shopping bidding system. Bid on items in the store and win them for price you set. You'll get a notification when your item hits the delivery page and finalize the payment before goods are sent to you.</p>
+    <a href="{%url 'login'%}" class="eg-btn btn--primary btn--md">Register Account</a>
+    </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 d-flex justify-content-lg-end justify-content-center">
+    <div class="how-work-img wow fadeInDown" data-wow-duration="1.5s" data-wow-delay=".2s">
+    <img alt="image" src="{%static 'img/how-work1.png'%}" class="work-img">
+    </div>
+    </div>
+    </div>
+    <div class="row g-4 mb-60">
+    <div class="col-xl-6 col-lg-6 d-flex justify-content-lg-start justify-content-center order-lg-1 order-2">
+    <div class="how-work-img wow fadeInDown" data-wow-duration="1.5s" data-wow-delay=".2s">
+    <img alt="image" src="{%static 'img/how-work2.png'%}" class="work-img">
+    </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 order-lg-2 order-1">
+    <div class="how-work-content wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+    <span>Step 02</span>
+    <h3>Select Your Item</h3>
+    <p class="para">Click the button below to view the available product. For your convenience, we provide you with relevant and helpful product description. You may also visit our online store at any time and place to purchase this product.</p>
+    <p class="para">You can select the product you want to bid on by clicking on the Store tab at the top of the page. To bid on an item, click on the Start Bidding button and enter your Delivery Details.</p>
+    <a href="Store" class="eg-btn btn--primary btn--md">Add Your Item</a>
+    </div>
+    </div>
+    </div>
+    <div class="row g-4">
+    <div class="col-xl-6 col-lg-6">
+    <div class="how-work-content wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+    <span>Step 03</span>
+    <h3>Purcahse Items or Start Bid on items</h3>
+    <p class="para">Do you need a specific item urgently? Do you want to checkout our store and purchase it right now? Just click on “OrderNow” button, we will let you know how long before the delivery will be set up with new payment processing service.</p>
+    <p class="para">If you have an item you’re looking to buy, but don’t have time to browse through all the store brands, then orderforsure is for you. The online platform allows you to bid on a product from our store and buy it on the spot!</p>
+    <a href="Store" class="eg-btn btn--primary btn--md">Purchase Item</a>
+    </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 d-flex justify-content-lg-end justify-content-center">
+    <div class="how-work-img wow fadeInDown" data-wow-duration="1.5s" data-wow-delay=".2s">
+    <img alt="image" src="{%static 'img/how-work3.png'%}" class="work-img">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

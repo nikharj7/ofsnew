@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart %}
+ {% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+
+{% endblock %} 
+{% block content %}
+
+  <h2 class="mb-3">Update your interests</h2>
+  <form method="POST"  >
+    {% csrf_token %}
+    <div class="dropdown">
+      <button class="btn btn-secondary" style="background:#000000; border:#000000;" dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        {% for brand in data.all_brands %}
+        <input type="checkbox" name='brand_interests' value="{{brand}}" class="chkvalues1"> {{brand}}<br/>
+        {% endfor %}
+      </div>
+      <input type"text" id="txtdisplay1" name="category" readonly>
+
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" style="background:#000000; border:#000000;" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        {% for category in data.all_category %}
+        <input type="checkbox" name="category_interests"  value="{{category}}" class="chkvalues2"> {{category}}<br/>
+        {% endfor %}
+      </div>
+      <input type"text" id="txtdisplay2" name="category" readonly>
+
+    </div>
+
+<input type="submit" class="btn btn-success" style="background:#000000; border:#000000;">Save changes
+<a href="{% url 'home' %}" class="btn btn-outline-secondary">Nevermind</a>
+  </form>
+{% endblock %}
+
+

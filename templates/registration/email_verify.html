@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+
+{% load static %}
+{% block head%}
+      <title>Verification - OrderForSure</title>
+        <link rel="stylesheet" href="{% static "css/header.css"%}">
+        <link rel="stylesheet" href="{% static "css/login.css"%}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{% static "js/header.js"%}"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+   
+{%endblock%}
+{%block content%}
+      
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-6">
+		        <!-- Modal content-->
+                    <div class="modal-content mb-5">
+                        <div class="modal_header" style="padding:25px 50px;">
+                            <h4 style="text-align:center;font-weight: 600;"><span class="glyphicon glyphicon-lock" style="color:white;">Enter a Valid OTP</span> </h4>
+                        </div>
+                        <form method="post" action="customer_email_verify"> {% csrf_token %}
+                            <div class="modal-body input-style"  style="padding:40px;">
+                
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="id_otp" class="form-control" name="OTP" placeholder="Enter a valid OTP">
+                                </div>
+                                <button type="submit" class="btn btn-block signup_btn my-3"><span class="glyphicon glyphicon-off" style="color:white;">Verify</span> </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>      
+        </div>
+    
+       
+	
+{%endblock%}

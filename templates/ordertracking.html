@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart %}
+{% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+
+<link
+  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+<script>
+  function onlyNumberKey(evt) {
+        
+      // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+          return false;
+      return true;
+  }
+</script>
+{% endblock %} 
+{% block content %}
+
+<h2>Order Tracking</h2>
+
+
+<p class="my-4">To track your order please enter your Order ID in the box below and press the "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
+
+
+<form action="" method="post"> {% csrf_token %}
+<div class="row">
+    <div class="col-md-6">
+        <p>Order ID</p>
+        <input type="text" onkeypress="return onlyNumberKey(event)" name="orderid" placeholder="Found in your order confirmation email." required>
+    </div>
+    <div class="col-md-6">
+        <p>Billing Email</p>
+        <input type="email" name="orderemail" placeholder="Email you used during checkout." required>
+    </div>
+</div>
+<button type="submit" class="theme-btn-1 btn btn-effect-1">Track</button>
+</form>
+
+{% if orderss %}
+
+<div class="container my-3">
+<strong><h5> Your Order ID is #00{{orderss.order_id}} and your payment status is {{orderss.customer_payment_status}}. </h5> </strong>
+{% comment %} Your order is in {% if orderss1.customer_payment_status == "CHECKING FOR TRANSACTION" %} Processing {% endif %} {% if orderss1.customer_payment_status == "NOT PAID" %}  {% endif %} {% endcomment %}
+    <table class="table my-3">
+      <thead>
+        <tr>
+          <th scope="col"> Bid Order Details</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Order ID</th>
+          <td>#00{{orderss.order_id}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">Date</th>
+          <td>{{orderss.order_date}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Product</th>
+            <td>{{orderss.name}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        <tr>
+          <th scope="row">Order amount</th>
+          <td>₹{{orderss.order_amount}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{orderss.customer_id}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">Payment Method</th>
+          <td>Bank Transfer</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+  {% if orderss1 %}
+
+<div class="container my-3">
+<strong><h5> Your Order ID is #00{{orderss1.order_id}} and your payment status is {{orderss1.customer_payment_status}}. </h5> </strong>
+{% comment %} Your order is in {% if orderss1.customer_payment_status == "CHECKING FOR TRANSACTION" %} Processing {% endif %} {% if orderss1.customer_payment_status == "NOT PAID" %}  {% endif %} {% endcomment %}
+    <table class="table my-3">
+      <thead>
+        <tr>
+          <th scope="col"> Store Order Details</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Order ID</th>
+          <td>#00{{orderss1.order_id}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">Date</th>
+          <td>{{orderss1.order_date}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Product</th>
+            <td>{{orderss1.name}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        <tr>
+          <th scope="row">Order amount</th>
+          <td>₹{{orderss1.order_amount}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{orderss1.customer_id}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">Payment Method</th>
+          <td>Bank Transfer</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+{% endif %}
+
+{% endblock%} 

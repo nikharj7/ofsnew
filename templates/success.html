@@ -1,0 +1,159 @@
+{% extends 'extra.html' %} {% load static %} {% load cart %} {% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+
+<link
+  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+{% endblock %} {% block content %}
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-6">
+  <h2 >Checkout</h2>
+</div>
+<div class="col-md-6">
+  <form action="" method="post"> {% csrf_token%}
+  <button type="submit" class="theme-btn-1 btn btn-effect-1"><i class="fas fa-long-arrow-alt-left"></i> &nbsp;  Back to Shop</button>
+  </form>
+</div>
+</div>
+  <div class="col-md-12">
+    <i class="fas fa-check-circle" style="font-size: 50px"></i>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <strong>Order #00{{success_order.order_id}}</strong><br />
+      Thank you {{success_order.customer_name}}
+    </div>
+  </div>
+</div>
+<div class="container my-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Order Confirmation</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Order Number</th>
+        <td>{{success_order.order_id}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Date</th>
+        <td>{{success_order.order_date}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Total</th>
+        <td>₹{{products|gst_total:request.session.cart|floatformat:2}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Email</th>
+        <td>{{success_order.customer_id}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Payment Method</th>
+        <td>Bank Transfer</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Customer Information</h3>
+      <h5>Billing Information</h5>
+      {{success_order.customer_name}}<br />
+      {{success_order.delivery_address}}-{{success_order.pincode}}<br />
+      {{success_order.delivery_contact}}<br />
+      {{success_order.customer_id}}
+    </div>
+    
+    <div class="col-md-6 my-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Order Details</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <th>
+              {{product.name}} × {{product|cart_quantity:request.session.cart}}
+            </th>
+
+            <td>₹{{product|price_total:request.session.cart}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>
+              GST
+            </th>
+
+            <td>₹{{product|GST:request.session.cart|floatformat:2}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          {%endfor%}
+          <tr>
+            <th scope="row">Subtotal</th>
+            <td>₹{{products|gst_total:request.session.cart|floatformat:2}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Grand Total</th>
+            <td><strong>₹{{products|gst_total:request.session.cart|floatformat:2}}</strong></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

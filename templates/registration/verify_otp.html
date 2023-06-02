@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{%endif%}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8 col-sm-10 col-12">
+      <form method="post" action='OTP_Validation'>
+        {% csrf_token %}
+        <input type='number' name='number' min='111111' max='999999' class='btn'></input>
+        <button type="submit" class="btn btn-success">Verify</button>
+        <a class='btn btn-success' href='OTP_Validation'>Resend</a>
+        
+      </form>
+      
+
+    </div>
+  </div>
+{% endblock %}

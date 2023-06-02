@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">My Orders</h2>
+{% if ven %}
+  {% for requirement in ven%}
+  <div class="card" >
+    <div class="clearfix"></div>
+    
+    <div class="card-body">
+     
+          <strong>Bid Order | Order ID : {{requirement.order_id}}</strong>  
+            <hr style="margin:0px; padding:0px;">
+          <div class="row my-3">
+            <div class="col-md-4">
+                Product : {{ requirement.name }}
+            </div>
+            <div class="col-md-4">
+                Quantity : {{ requirement.quantity }}
+            </div>
+            <div class="col-md-4">
+                PinCode : {{ requirement.pincode }}
+            </div>
+          </div>
+          <hr style="margin:0px; padding:0px;">
+          
+          <div class="row my-3">
+            <div class="col-md-4">
+                Order Amount: ₹{{requirement.order_amount }}
+            </div>
+            <div class="col-md-4">
+                Contact : {{requirement.delivery_contact}}
+            </div>
+            <div class="col-md-4">
+                Customer : {{requirement.customer_id}}
+            </div>
+          </div>
+            <hr style="margin:0px; padding:0px;">
+            {% if requirement.completed == True %}
+            <p>Please prepare order and share shipment details with us.</p>
+            {% else %}
+             <div class="col-md-6" >
+     
+               <form action="" method="post" enctype="multipart/form-data"> {%csrf_token%}
+               <div class="row my-2"><strong>Upload Invoice </strong></div>
+               
+                   <input type="file" class="form-control" id="invoice" name="invoice" required>
+     
+               
+                 <input type="hidden" class="form-control" value="{{requirement.order_id}}" name="idd" >
+
+                 </div>
+                 <div class="col-md-6" style="padding-top:28px;" >
+                 <button type="submit" name="complete" class="btn btn-primary my-2" style="background:#000000; border:#000000;">Complete Order</button>
+                 </form>
+                 </div>
+                 {% endif %}
+         
+    </div>
+  </div>
+  {% endfor%}
+{% endif %} 
+
+{% if ven1 %}
+{% for requirement in ven1%}
+<div class="card" >
+  <div class="clearfix"></div>
+  
+  <div class="card-body">
+   
+        <strong>Store Order | Order ID : {{requirement.order_id}}</strong>  
+          <hr style="margin:0px; padding:0px;">
+        <div class="row my-3">
+          <div class="col-md-4">
+              Product : {{ requirement.name }}
+          </div>
+          <div class="col-md-4">
+              Quantity : {{ requirement.quantity }}
+          </div>
+          <div class="col-md-4">
+              PinCode : {{ requirement.pincode }}
+          </div>
+        </div>
+        <hr style="margin:0px; padding:0px;">
+        
+        <div class="row my-3">
+          <div class="col-md-4">
+              Order Amount: ₹{{requirement.order_amount }}
+          </div>
+          <div class="col-md-4">
+              Contact : {{requirement.delivery_contact}}
+          </div>
+          <div class="col-md-4">
+              Customer : {{requirement.customer_id}}
+          </div>
+        </div>
+          <hr style="margin:0px; padding:0px;">
+          {% if requirement.completed == True %}
+          <p>Please prepare order and share shipment details with us.</p>
+          {% else %}
+           <div class="col-md-6" >
+   
+             <form action="Store_Orders" method="post" enctype="multipart/form-data"> {%csrf_token%}
+             <div class="row my-2"><strong>Upload Invoice </strong></div>
+             
+                 <input type="file" class="form-control" name="bill" required>
+                 <input type="hidden" class="form-control" value="{{requirement.order_id}}"  name="idd" >
+
+
+   
+              
+             
+               </div>
+               <div class="col-md-6" style="padding-top:28px;" >
+               <button type="submit" name="complete" class="btn btn-primary my-2" style="background:#000000; border:#000000;">Complete Order</button>
+               </form>
+               </div>
+               {% endif %}
+       
+  </div>
+</div>
+  
+  {% endfor%}
+
+
+{% endif %}
+
+
+{% endblock %}

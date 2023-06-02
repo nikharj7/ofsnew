@@ -1,0 +1,173 @@
+/*W3hubs.com - Download Free Responsive Website Layout Templates designed on HTML5 CSS3,
+Bootstrap which are 100% Mobile friendly. w3Hubs all Layouts are responsive cross 
+browser supported, best quality world class designs.*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:300i,400,500,700');
+body{
+	padding: 0;
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+
+}
+h1{
+	text-align: center;
+	padding: 30px;
+	font-family: 'Roboto', sans-serif;
+	text-transform: capitalize;
+}
+.fa{
+	padding: 18px;
+	font-size: 24px;
+	margin: 10px;
+	 width: 60px;
+	 height: 60px;
+	  text-align: center;
+	  border-radius: 50%;
+    color: #ffffff !important;
+    transition: .9s;
+}
+.fa:hover{
+	  
+    transform: scale(1.3);
+   transition: .6s;
+}
+.fa-facebook{
+	background: #425f9c;
+	
+}
+.fa-twitter{
+	background: #1da1f2;
+}
+.fa-instagram{
+	background: #3f729b;
+}
+.fa-yahoo{
+	background: #400191
+
+}
+.fa-linkedin{
+	background: #0b96e5;
+
+}
+.fa-reddit{
+	background: #ff6a33;
+
+}
+.fa-youtube{
+	background: #E52D26;
+
+}
+.fa-google-plus{
+	background: #e47365;
+
+}
+.fa-behance{
+	background: #1769ff;
+
+}
+.fa-flickr{
+	background: #0063dc;
+
+}
+.fa-github-alt{
+	background: #4183c4;
+
+}
+.fa-skype{
+	background: #24c4ff;
+
+}
+.fa-stack-overflow{
+	background: #fe7a15;
+
+}
+.fa-tumblr{
+	background: #35465c;
+
+}
+
+.fa-bitbucket{
+	background: #205081;
+
+}
+.fa-dropbox{
+	background: #007ee5;
+
+}
+.fa-foursquare{
+	background: #ef4b78;
+
+}
+.fa-jsfiddle{
+	background: #4679bd;
+
+}
+.fa-dribbble{
+	background: #ea4c89;
+
+}
+.fa-digg{
+	background: #000;
+
+}
+
+.fa-deviantart{
+	background: #4e6252;
+
+}
+.fa-codepen{
+	background: #76daff;
+
+}
+.fa-lastfm{
+	background: #e31b23;
+
+}
+.fa-paypal{
+	background: #253b80;
+
+}
+.fa-pinterest{
+	background: #cc2127;
+
+}
+.fa-soundcloud{
+	background: #f80;
+
+}
+.fa-steam{
+	background: #7da10e;
+
+}
+.fa-stumbleupon{
+	background: #eb4924;
+
+}
+.fa-trello{
+	background: #256a92;
+
+}
+.fa-twitch{
+	background: #6441a5;
+
+}
+.fa-vimeo-square{
+	background: #1ab7ea;
+}
+.fa-vine{
+	background: #00b488;
+}
+.fa-vk{
+	background: #45668e;
+}
+.fa-wechat{
+	background: #98d11c;
+}
+.fa-wordpress{
+	background: #21759b;
+}
+.fa-xing{
+	background: #026466;
+}
+.fa-yelp{
+	background:#af0606; 
+}

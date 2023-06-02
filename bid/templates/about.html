@@ -1,0 +1,109 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} 
+{% block content %}
+<div class="container mb-5">
+  <h3>About Us</h3>
+  <hr>
+</div>
+<div class="container my-3">
+  <div class="card">
+    <div class="card-body">
+      <h2 style="text-align: center">
+        <strong> Company Vision & Business Model</strong>
+      </h2>
+      <hr />
+
+      <p>
+        <strong>OrderForSure</strong> can make a lot of sense when there are many
+        sellers in the market and price is the most important factor. They save
+        time and money, which is no small thing for a business, although
+        sometimes this can come at the cost of sacrificing quality. Detailed
+        contract specifications should rule out sub-optimal quality goods and
+        services winning bids.
+      </p>
+      <p>
+        However, depending on the good or service in question, sometimes it is
+        better and generally more efficient over the long run to pay a little
+        more for greater quality.
+      </p>
+      <p>
+        <strong>
+          The old adages “you get what you pay for” and “cheap for a reason”
+          apply here. For some goods and services, this may not be an issue. For
+          others, it is a game-changer.
+        </strong>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="height: 346px;" >
+        <div class="card-body">
+            <h5 style="text-align: center"><strong>Our Mission</strong></h5>
+        <hr />
+        <p>
+          We were conceived with an entrepreneurial spirit that aims toward
+          customer delight and combining them with strong technical and business
+          plans with true quality.
+        </p>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+    <div class="card" style="height: 346px;">
+      <div class="card-body">
+        <h5 style="text-align: center">
+            <strong>Users Satisfaction</strong>
+          </h5>
+          <hr />
+          <p>
+            Our goal would be to satisfy users needs in time and build long
+            lasting relationships with the users. We always try to provide
+            satisfaction to our user with our experience, product availability
+            and service. We assure our clients of quality products and excellent
+            after sales service. This way we believe we sell peace of mind and
+            help our clients focus on their core business.
+          </p>
+        
+      </div>
+    </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="height: 346px;">
+          <div class="card-body">
+            <h5 style="text-align: center"><strong>Our Vision</strong></h5>
+            <hr />
+            <p>
+                Providing access of quality Medical surgical products from Manufactures directly to Traders and Hospitals at best prices
+          </div>
+        </div>
+        </div>
+  </div>
+</div>
+{% endblock %}

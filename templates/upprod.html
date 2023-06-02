@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load static %} {% load cart %} {% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %}
+{% block content %}
+<h5>Upload your Products</h5>
+<div class="container">
+<div class="card">
+<div class="card-body">
+
+<h5>Sample file for refrence</h5> 
+<a href="{% static 'sample.xlsx'%}" class="btn theme-btn-2 btn-effect-2">Download<a> 
+
+</div>
+</div>
+</div>
+<div class="container">
+<div class="card">
+<div class="card-body">
+
+<small style="color:#000000;"> <strong>(only accepts .xlsx file)</strong></small>
+
+<form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+    <input type="file" name="files" accept=".xlsx" required>
+<button class="btn theme-btn-2 btn-effect-2" type="submit">Upload</button>   
+
+</form>  
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+

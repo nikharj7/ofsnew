@@ -1,0 +1,477 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %} OrderForSure {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/chosen.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      .fa {
+        padding: 20px;
+        font-size: 24px;
+        width: 54px;
+        height: 52px;
+        text-align: center;
+        border-radius: 40%;
+        color: #ffffff !important;
+        transition: 0.9s;
+        display: contents !important;
+      }
+      .fa:hover {
+        transform: scale(1.3);
+        transition: 0.6s;
+      }
+      .fa-facebook {
+        background: #000000;
+        padding: 20px;
+      }
+      .fa-twitter {
+        background: #000000;
+        padding: 20px;
+      }
+      .fa-instagram {
+        background: #000000;
+        padding: 20px;
+      }
+
+      .fa-linkedin {
+        background: #000000;
+        padding: 20px;
+      }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <!-- Style -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/chosen.jquery.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous"
+  />
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+  
+  <link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+  <!-- Responsive css -->
+  <link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+  
+  <script
+    src="https://kit.fontawesome.com/a076d05399.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="{% static 'js/plugins.js' %}"></script>
+  <!-- Main JS -->
+  <script src="{% static 'js/mainhome.js' %}"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Clicker+Script"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/fontello-2f186091/css/fontello.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    {% if user.is_authenticated and user.is_customer %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/teachers.css' %}"
+    />
+    {% else %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/students.css' %}"
+    />
+    {% endif %}
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .card {
+        box-shadow: 0 1px 5px #ccc;
+        border-top: 3px solid #fbb203;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 15px;
+        line-height: 1.3;
+        margin-top: 0px;
+      }
+
+      .col-md-3 {
+        padding-left: 26px;
+      }
+    </style>
+
+    {%block head%} {%endblock%}
+  </head>
+
+  <body>
+    
+      <!-- Top Bar -->
+      <header class="ltn__header-area ltn__header-3 section-bg-6---">   
+        <!-- ltn__header-top-area start -->
+        <div class="ltn__header-top-area border-bottom top-area-color-white---" style="background:#000000; color:white;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ltn__top-bar-menu">
+                            <ul>
+                                <li><a href="mailto:info@orderforsure.com"><i class="fa fa-envelope"></i> info@orderforsure.com</a></li>
+                                <li><a href="tel:+919986197799"><i class="fa fa-phone"></i> +91 9986197799</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="top-bar-right text-end">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    
+                                    <li>
+                                        <!-- ltn__social-media -->
+                                        <div class="ltn__social-media">
+                                            <ul>
+                                                <li><a href="#" title="Facebook"><i class="fab fa-facebook-f" style="color:white;"></i></a></li>
+                                                <li><a href="#" title="Twitter"><i class="fab fa-twitter" style="color:white;"></i></a></li>
+                                                <li><a href="#" title="Instagram"><i class="fab fa-instagram" style="color:white;"></i></a></li>
+                                                <li><a href="#" title="Dribbble"><i class="fab fa-dribbble" style="color:white;"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        
+       
+    </header>
+
+
+     {% block content %}{% endblock  %}
+     <footer class="text-center text-lg-start footer_style">
+      <!-- Section: Social media -->
+      <section class="d-flex"></section>
+      <!-- Section: Social media -->
+  
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div
+              style="text-align: start"
+              class="col-md-3 col-lg-4 col-xl-3 mx-auto"
+            >
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold" style="color: white">
+                OrderForSure
+              </h6>
+              <p style="color: white">
+                <i class="fa fa-home" style="padding: 0px"></i>
+                44, Hanuman Vatika-1st, Ajmer Road, Jaipur,
+              </p>
+              <p style="color: white">
+                <i class="fa fa-envelope"></i>
+                <a href="mailto:info@orderforsure.com">info@orderforsure.com</a>
+              </p>
+              <p style="color: white">
+                <i class="fa fa-phone"></i
+                ><a href="tel:+919986197799">+91 9986197799</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+  
+            <!-- Grid column -->
+            <div
+              style="text-align: start"
+              class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4" style="color: white">
+                Useful links
+              </h6>
+              <p style="color: white">
+                <a href="/" class="text-reset">Home</a>
+              </p>
+              <p style="color: white">
+                <a href="{% url 'About' %}" class="text-reset">About Us</a>
+              </p>
+              <p style="color: white">
+                <a href="{% url 'Contact' %}" class="text-reset"
+                  >Contact Us</a
+                >
+              </p>
+            </div>
+            <!-- Grid column -->
+  
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+             
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+  
+      <!-- Copyright -->
+      <div
+        class="text-center p-4"
+        style="background-color: #000000; color: #ffffff"
+      >
+        © 2022-2023 Copyright
+        <a class="text-reset fw-bold" href="/"
+          ><strong>OrderForSure.com</strong></a
+        >
+        | India
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </body>
+</html>
+
+
+
+{% comment %} 
+# def product(request, slug):
+#     cart = request.session.get('cart')
+#     if not cart:
+#         request.session.cart = {}
+#     if request.user.is_authenticated:
+#         if request.user.is_customer:
+#             if customer_Detail.objects.filter(customer_id=request.user.id):
+#                 data = customer_Detail.objects.get(customer_id=request.user.id)
+#                 post = Product.objects.filter(slug=slug).first()
+#                 searchP = Product.objects.all()
+#                 cat = Category.objects.all()[:8]
+#                 allprod = Product.objects.all().order_by("-price")[0:5]
+#                 pp = Product.objects.all()
+#                 vendor_prod = Product.objects.filter(Q(slug__icontains=slug) | Q(name__icontains=slug) | Q(description__icontains=slug) ).order_by("price")
+#                 prc = vendor_prod.aggregate(Min('price'))
+#                 res = list(prc.values())
+#                 minprice = ("".join(str(v) for v in res))
+#                 pre = preorder.objects.filter(complete=False)
+#                 for i in pre:
+#                     req_time = preorder.objects.filter(created_at=i.created_at + timedelta(minutes=3))
+#                     req_time.delete()
+                
+#                 context = {'cat':cat,'post':post, 'searchP':searchP, 'pp':pp, 'allprod':allprod, 'data':data,'vendor_prod':vendor_prod,'minprice':minprice}
+#                 if request.method == "POST":
+#                     pimg = post.image
+#                     desc = post.description
+#                     pname = post.name
+#                     price = post.price
+#                     pr = post.product_ref_no
+#                     cate = post.category
+#                     mrp = post.mrp
+#                     brand = post.Brand
+#                     qty = post.quantity
+#                     step_qty = post.step_up_quantity
+#                     customer = request.user
+#                     slug = post.slug
+#                     if int(qty) <= 0:
+#                         messages.error(request, 'Cart Quantity cant be 0 !! Please update Quantity')
+#                     else:
+#                         pre = preorder(step_up_quantity=step_qty,mrp=mrp,product_ref_no=pr,price=price,description=desc,brand=brand,slug=slug,product_image=pimg,name=pname,category=cate,quantity=qty,customer=customer)
+#                         pre.save()
+#                         return redirect('customers:customer_requirement')
+#                 if request.session.get('cart'):
+#                     ids = (list(request.session.get('cart').keys()))
+#                     products = Product.get_product_by_ids(ids)
+#                     context = {'products':products,'post':post, 'searchP':searchP, 'pp':pp, 'allprod':allprod, 'data':data,'vendor_prod':vendor_prod,'minprice':minprice}
+                        
+#                     return render(request, 'product-details.html', context )
+#             context = {'post':post, 'pp':pp, 'searchP':searchP, 'cat':cat, 'allprod':allprod, 'data':data,'vendor_prod':vendor_prod,'minprice':minprice}
+                        
+#             return render(request, 'product-details.html', context )
+#         else:
+#             if vendor_Detail.objects.filter(vendor_id=request.user.id):
+#                 data = vendor_Detail.objects.get(vendor_id=request.user.id)
+#                 post = Product.objects.filter(slug=slug).first()
+#                 searchP = Product.objects.all()
+#                 allprod = Product.objects.all().order_by("-price")[0:5]
+#                 pp = Product.objects.all()
+#                 cat = Category.objects.all()[:8]
+#                 if request.method == "POST":
+#                     prod = request.POST.get('carttt') 
+#                     qty = request.POST.get('qtybutton')
+                    
+#                     cart = request.session.get('cart')
+#                     if cart:
+#                         quantity = cart.get(prod)
+#                         if quantity:
+#                             if qty:
+#                                 cart[prod] = quantity+int(qty)
+#                         else:
+#                             cart[prod] = int(qty)
+#                     else:
+#                         cart = {}
+#                         cart[prod] = int(qty)
+#                     request.session['cart'] = cart
+#                     messages.success(request, 'Added in Cart ')
+#                 if request.session.get('cart'):
+#                     ids = (list(request.session.get('cart').keys()))
+#                     products = Product.get_product_by_ids(ids)
+#                     context = {'post':post, 'products':products, 'searchP':searchP, 'cat':cat, 'allprod':allprod, 'data':data, 'pp':pp }
+#                     return render(request, 'product-details.html', context )
+
+
+#                 context = {'post':post, 'searchP':searchP, 'cat':cat, 'allprod':allprod, 'data':data, 'pp':pp }
+#                 return render(request, 'product-details.html', context )
+#     else:
+#         cart = request.session.get('cart')
+#         print(cart)
+#         post = Product.objects.filter(slug=slug).first()
+#         allprod = Product.objects.all().order_by("-price")[0:5]
+#         cat = Category.objects.all()[:8]
+#         pp = Product.objects.all()
+#         searchP = Product.objects.all()
+#         if request.method == "POST":
+#             prod = request.POST['postval']
+#             qty = request.POST['postqty']
+                    
+#             cart = request.session.get('cart')
+#             if cart:
+#                 quantity = cart.get(prod)
+#                 if quantity:
+#                     if qty:
+#                         cart[prod] = quantity+int(qty)
+#                 else:
+#                     cart[prod] = int(qty)
+#             else:
+#                 cart = {}
+#                 cart[prod] = int(qty)
+#             request.session['cart'] = cart
+#             messages.success(request, 'Added in Cart ')
+#         if request.session.get('cart'):
+#             ids = (list(request.session.get('cart').keys()))
+#             products = Product.get_product_by_ids(ids)
+
+#     context = {'post':post, 'searchP':searchP, 'allprod':allprod,'cat':cat, 'pp':pp, }
+#     return render(request, 'product-details.html', context) {% endcomment %}

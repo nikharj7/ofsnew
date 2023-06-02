@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+<div class="container my-3">
+  <h4>My Requirements</h4>
+</div>
+{% if nav %}
+
+{% for requirement in nav %}
+<div class="container my-3">
+  <div class="card" style="border-top: 3px solid #e1fb83cb ;">
+
+    <div class="clearfix"></div>
+
+    <div class="card-body">
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p ><strong>Bid ID : {{requirement.product_id}}</strong></p>
+        </div>
+        <div class="col-md-6">
+          {% if requirement.requirement_status == "APPROVED" %}
+          {% if requirement.Ordered == "YES" %}
+      <p style="color: red;"><strong>Bid Closed</strong></p>
+      {% else %}
+          
+        
+      <p style="color:red;"><strong>Bid ends on : {{requirement.bidding_expiry|date:"M d, Y H:i:s A"}} </strong></p>
+      
+      {%endif%}
+      {% endif %}
+      {% if requirement.requirement_status == "DISABLED" %}
+       <p style="color: red;"><strong> Bid Closed. </strong></p>
+      {%endif%}
+      {% if requirement.requirement_status == "EXPIRED" %}
+      <p style="color: red;"><strong> Bid Expired. </strong></p>
+     {%endif%}
+     {% if requirement.requirement_status == "PENDING" %}
+      <p style="color: red;"><strong> Bid Approval Pending. </strong></p>
+     {%endif%}
+     {% if requirement.requirement_status == "REJECTED" %}
+      <p style="color: red;"><strong> Bid Rejected Please contact Admin. </strong></p>
+     {%endif%}
+     {% if requirement.requirement_status == "ON HOLD" %}
+      <p style="color: red;"><strong> Bid Expired </strong></p>
+     {%endif%}
+        </div>
+      </div>
+      <hr style="margin:1px;">
+      <div class="row my-5">
+        <div class="col-md-2">
+          <img src="{{requirement.product_image_1.url}}" style="height:70%; width:70%;">
+        </div>
+
+        <div class="col-md-3">
+          <div class="row my-2"><strong>Product Name: {{ requirement.name|safe | truncatechars:15 }}</strong></div><br>
+          <div class="row my-2"><strong>Quantity: {{ requirement.quantity }}</strong></div>
+        </div>
+        <div class="col-md-3" >
+          <div class="row my-2"><strong>Category: {{ requirement.category }}</strong></div><br>
+          <div class="row my-2"><strong>Brand: {{ requirement.brand }}</strong></div>
+        </div>
+       
+        <div class="col-md-3">
+          <div class="row my-2"><strong>Expected Delivery Days: {{requirement.Exp_delivery_days }}</strong></div><br>
+          <div class="row my-2"><strong>Approval Status : {% if requirement.requirement_status == "APPROVED" %}<strong style="color:green">Approved</strong> {% endif %} {% if requirement.requirement_status == "PENDING"%}<strong style="color:red">Pending</strong> {% endif %} {% if requirement.requirement_status == "REJECTED" %}<strong style="color:red">Rejected</strong> {%endif%} {% if requirement.requirement_status == "EXPIRED" %}<strong style="color:red">Expired</strong> {%endif%} {% if requirement.requirement_status == "DISABLED" %}<strong style="color:red">Bid Closed</strong> {%endif%} {% if requirement.requirement_status == "ON HOLD" %}<strong style="color:red">Hold</strong> {%endif%}</strong>
+          
+
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <hr style="margin:1px;">
+      
+
+      
+      
+      {% if requirement.requirement_status == "APPROVED" %}
+      {% if requirement.Ordered == "YES" %}
+      
+      {% else %}
+      <div class="row">
+        <div class="col-md-6 my-2" style="padding-left: 26px;">
+          <a href="{% url 'customers:requirement_detail' requirement.pk %}" class="btn btn-primary" style="background:#000000; border:#000000;">View Requirement
+            Detail</a>
+        </div>
+
+        <div class="col-md-6 my-2" style="padding-left: 26px;">
+          <a href="{% url 'customers:topbids' requirement.pk %}" class="btn btn-primary" style="background:#000000; border:#000000;">View Bid</a>
+        </div>
+
+
+
+      </div>
+   {% endif %}
+      {%endif%}
+
+      {% if requirement.requirement_status == "EXPIRED" %}
+     <div class="col-md-6 my-2" style="padding-left: 26px;">
+      <form action="" method="post"> {% csrf_token %}
+        <input type="submit" class="theme-btn-1 btn btn-effect-1" style="background:#000000; color:white; width:32%;" name="repost" value="Repost Requirement"> 
+        </form>
+    </div>
+    {%endif%}
+    {% if requirement.requirement_status == "ON HOLD" %}
+     <div class="col-md-6 my-2" style="padding-left: 26px;">
+    
+      <p><strong> Requirement Repost notification has been sent to admin. Please wait till admin extend your requirement expiry date.</strong></p>
+       
+    </div>
+    {%endif%}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{%endfor%}
+{% else %}
+<div class="card" style="border-top: 3px solid #e1fb83cb ;">
+
+  <div class="clearfix"></div>
+
+  <div class="card-body" style="text-align:center;">
+   <h5> No Requirements posted Yet...!!</h5>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

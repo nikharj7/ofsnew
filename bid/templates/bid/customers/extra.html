@@ -1,0 +1,119 @@
+Add requirement wala page crispy form se
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div>
+{%if data.pk %}
+
+{% comment %} {% for item in data%} {% endcomment %}
+
+<div class="item">
+  <label for="org_name">Name<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.name}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Category<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.category}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Brand<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.brand}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Quantity<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.quantity}}' readonly='readonly'/>
+</div>
+
+<div class="item">
+  <label for="org_name">Description<span>*</span></label>
+  <input class="textarea form-control" id="org_name"  type="text" name="org_name" value='{{data.description}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">status<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Created At<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.created_at}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Contact Number<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.delivery_contact}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Delivery Address<span>*</span></label>
+  <input class="textarea form-control" id="org_name"  type="text" name="org_name" value='{{data.delivery_address}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Product Reference Number<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.product_ref_no}}' readonly='readonly'/>
+</div>
+<div class="item">
+  <label for="org_name">Delivery Pincode<span>*</span></label>
+  <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" value='{{data.delivery_pincode}}' readonly='readonly'/>
+</div>
+
+</div>
+{%else%}
+
+  <div class="row">
+    <div class="col-md-8 col-sm-10 col-12">
+      <h2>Product Detail  | {{data.customer_id}}</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {{ form|crispy }}
+        {% comment %} <div class="item">
+          <label for="org_name">Name<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name"  />
+        </div>
+        <div class="item">
+          <label for="org_name">Category<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" v/>
+        </div>
+        <div class="item">
+          <label for="org_name">Brand<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" />
+        </div>
+        <div class="item">
+          <label for="org_name">Quantity<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name"/>
+        </div>
+        
+        <div class="item">
+          <label for="org_name">Description<span>*</span></label>
+          <input class="textarea form-control" id="org_name"  type="text" name="org_name" />
+        </div>
+        <div class="item">
+          <label for="org_name">status<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" />
+        </div>
+        <div class="item">
+          <label for="org_name">Created At<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" />
+        </div>
+        <div class="item">
+          <label for="org_name">Contact Number<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" />
+        </div>
+        <div class="item">
+          <label for="org_name">Delivery Address<span>*</span></label>
+          <input class="textarea form-control" id="org_name"  type="text" name="org_name" />
+        </div>
+        <div class="item">
+          <label for="org_name">Product Reference Number<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" />
+        </div>
+        <div class="item">
+          <label for="org_name">Delivery Pincode<span>*</span></label>
+          <input class= 'textinput textInput form-control' id="org_name"  type="text" name="org_name" />
+        </div>{% endcomment %}
+        
+        <button type="submit" class="btn btn-success" style="background:#000000; border:#000000;">Submit</button>
+      </form> 
+    </div> 
+  </div>
+
+{%endif %}
+{% endblock %}

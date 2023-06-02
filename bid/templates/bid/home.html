@@ -1,0 +1,487 @@
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Home - OrderForSure</title>
+  <link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<style>
+  .fa {
+    padding: 25px;
+    font-size: 24px;
+    width: 54px;
+    height: 52px;
+    text-align: center;
+    border-radius: 40%;
+    color: #ffffff !important;
+    transition: 0.9s;
+    display : contents! important;
+  }
+  .fa:hover {
+    transform: scale(1.3);
+    transition: 0.6s;
+  }
+  .fa-facebook {
+    background: #000000;
+  }
+  .fa-twitter {
+    background: #000000;
+  }
+  .fa-instagram {
+    background: #000000;
+  }
+
+  .fa-linkedin {
+    background: #000000;
+  }
+</style>
+  
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="{% static 'js/header.js' %}"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</head>
+<div class="super_container">
+
+<!-- Header -->
+<header class="header">
+
+  <!-- Top Bar -->
+
+  <div class="top_bar">
+    <div class="container">
+      <div class="">
+        <div class="col d-flex flex-row">
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><i class="fa fa-phone" aria-hidden="true"></i></div>+91 - 8824832779</div>
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><i class="fa fa-envelope" aria-hidden="true"></i></div><a href="mailto:info@OrderForSure.in">info@OrderForSure.in</a></div>
+          {% if user.is_authenticated %}
+          <div class="top_bar_content ml-auto">
+            {% if user.is_customer %}
+                          <p style="color:white;" class="mt-2"><a href="{%url 'customers:view_profile'%}" style="color:white;">Profile</a> |  Welcome {{request.user}} | <a href="{% url 'logout'%}" style="color:white;">Logout</a></p>
+                          {% endif %}
+                          {% if user.is_vendor %}
+                          <p style="color:white;" class="mt-2"><a href="{%url 'vendors:view_profile'%}" style="color:white;">Profile</a> |  Welcome {{request.user}} | <a href="{% url 'logout'%}" style="color:white;">Logout</a></p>
+                    {% endif %}
+          </div>
+          {% else %}
+          <div class="top_bar_content ml-auto">
+            <button class="btn_style" style="background:white; color:#000000; border-radius:45px;"><a class="text-reset" href='{% url 'login' %}'> Login/Register</a></button>
+</div>
+            {% endif %}
+        </div>
+      </div>
+    </div>		
+  </div>
+
+  <!-- Header Main -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#000000 ! important;">
+    <a class="navbar-brand" href="#">OrderForSure</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'About' %}" style="color:white;">About us </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'Contact' %}" style="color:white;">Contact Us</a>
+        </li>
+        
+        {% if user.is_authenticated %}
+        {% if user.is_customer %}
+        {% if data.customer_id %}
+        {%if data.status == True%}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'customers:customer_requirement' %}"style="color:white;">Post New Requirement</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'customers:View_requirement' %}"style="color:white;">My Requirements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'customers:orders' %}"style="color:white;">Orders</a></li>
+        </li>
+       
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% if user.is_authenticated %}
+        {% if user.is_vendor %}
+        {% if data.vendor_id %}
+        {%if data.status == True%}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vendors:vendorInterestsView' %}" style="color:white;">Update Interest</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vendors:BidList' %}"style="color:white;">Bids</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vendors:mybids' %}"style="color:white;"> My Bids</a></li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vendors:orders' %}"style="color:white;">Orders</a>
+        </li>
+       
+        {% endif %}
+        {%endif%}
+        {% endif %}
+        {%endif%} 
+
+        
+      </ul>
+      
+    </div>
+  </nav>
+  
+  <!-- carousal -->
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+      <img class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp" alt="First slide">
+      </div>
+      <div class="carousel-item">
+      <img class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(22).webp" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+      <img class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp" alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    </div>
+  <!-- carousal  end-->
+</header>
+
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Why this Platform</h5>
+      <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title">Who Can Use this</h5>
+      <p class="card-text">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title">How to use this</h5>
+      <p class="card-text">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"</p>
+    </div>
+  </div>
+
+  <div class="container">
+  
+    <!--Carousel Wrapper-->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+  
+    <!--Controls-->
+    <div class="controls-top">
+      <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+      <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+    </div>
+    <!--/.Controls-->
+  
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+  
+      <!--First slide-->
+      <div class="carousel-item active">
+  
+      <div class="row">
+        <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+  
+        <div class="col-md-4 clearfix d-none d-md-block">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+  
+        <div class="col-md-4 clearfix d-none d-md-block">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+      </div>
+  
+      </div>
+      <!--/.First slide-->
+  
+      <!--Second slide-->
+      <div class="carousel-item">
+  
+      <div class="row">
+        <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+  
+        <div class="col-md-4 clearfix d-none d-md-block">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+  
+        <div class="col-md-4 clearfix d-none d-md-block">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+      </div>
+  
+      </div>
+      <!--/.Second slide-->
+  
+      <!--Third slide-->
+      <div class="carousel-item">
+  
+      <div class="row">
+        <div class="col-md-4">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+  
+        <div class="col-md-4 clearfix d-none d-md-block">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+  
+        <div class="col-md-4 clearfix d-none d-md-block">
+        <div class="card mb-2">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
+             alt="Card image cap">
+          <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          </div>
+        </div>
+        </div>
+      </div>
+  
+      </div>
+      <!--/.Third slide-->
+  
+    </div>
+    <!--/.Slides-->
+  
+    </div>
+    <!--/.Carousel Wrapper-->
+  </div>
+</div>
+</div>
+
+</div>
+
+<!-- Signup modal -->
+
+<div class="modal fade signup-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header" style="padding:35px 50px;">
+    <h4><span class="glyphicon glyphicon-lock"></span> Register</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body input-style"  style="padding:40px 50px;">
+    <form role="form">
+      <div class="form-group">
+      <label for="usrname"><i class="fa fa-user"></i> Username</label>
+      <input type="text" class="form-control" id="usrname" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+      <label for="email"><i class="fa fa-envelope"></i> Email</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+      <label for="password"><i class="fa fa-lock"></i> Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password">
+      </div>
+      <div class="form-group">
+      <label for="mobile"><i class="fa fa-phone"></i>  Mobile</label>
+      <input type="text" class="form-control" id="mobile" placeholder="Enter mobile no">
+      </div>
+      <div class="checkbox">
+      <label><input type="checkbox" value="" checked><span class="policy_agreement"> I agree to OrderForSure's <span class='link_style'>Privacy Policy , T&C , Content Policy</span></span></label>
+      </div>
+      <button type="submit" class="btn btn-block signup_btn"><span class="glyphicon glyphicon-off"></span> Create Account</button>
+    </form>
+    <div class="modal-footer d-flex justify-content-center">
+      <h6>Already have an account?</h6><h6 class="link_style">Login</h6>
+      </div>		  
+    </div>
+  </div>
+  
+  </div>
+</div>
+
+<!-- signup modal close -->
+
+<!-- Footer -->
+<footer class="text-center text-lg-start footer_style">
+  <!-- Section: Social media -->
+  <section class="d-flex">
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div style="text-align: start;" class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4" style="color:white;">
+            <i class="fas fa-gem me-3"></i>OrderForSure
+          </h6>
+          <p style="color:white;">
+      <i class="fa fa-home"></i>
+      Plot No. 44, Hanuman Vatika-1st, Ajmer Road, Jaipur,
+          </p>
+    <p style="color:white;">
+      <i class="fa fa-envelope"></i>
+      info@OrderForSure.in
+      </p>
+      <p style="color:white;"><i class="fa fa-phone"></i>+91 - 8824832779</p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div style="text-align: start;" class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4" style="color:white;">
+            Useful links
+          </h6>
+          <p style="color:white;">
+            <a href="/" class="text-reset">Home</a>
+          </p>
+          <p style="color:white;">
+            <a href="{% url 'About' %}" class="text-reset">About Us</a>
+          </p >
+          <p style="color:white;">
+            <a href="{% url 'Contact' %}" class="text-reset">Contact Us</a>
+          </p>
+         
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <section id="w3hubs">
+   
+            <div class="row">
+              <a href="#" style="padding:10px;"><i class="fa fa-facebook"></i></a>
+              <a href="#" style="padding:10px;"><i class="fa fa-instagram"></i></a>
+              <a href="#" style="padding:10px;"><i class="fa fa-linkedin"></i></a>
+              <a href="#" style="padding:10px;"><i class="fa fa-twitter"></i></a>
+            </div>
+          
+        </section>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color:#000000 ;color:#ffffff">
+    © 2022-2023 Copyright
+    <a class="text-reset fw-bold" href="/"><strong>OrderForSure.com</strong> </a>| India
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+<script>
+function closeModal(){
+$('.login-modal').hide();
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+
+}
+</script>
+
+
+
+
+

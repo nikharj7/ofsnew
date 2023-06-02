@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart %}
+{% block head %}
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+
+<script>
+  function onlyNumberKey(evt) {
+        
+      // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+          return false;
+      return true;
+  }
+</script>
+{% endblock %}
+{% block content %}
+
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <div class="container mt-5">
+
+    <label for="exampleFormControlInput1">
+      <h3>Post Your Requirement</h3>
+    </label>
+    <p>All * Fields are Mandatory</p>
+  </div>
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-md-4 my-3">
+        <label for="exampleFormControlInput1">Product Name</label>
+        {% if pree %}
+        <input type="text" class="form-control" id="Prodname" style="text-transform: uppercase" value="{{pree.name}}" name="Prodname" placeholder="Product Name" readonly />
+
+        {% else %}
+        <input type="text" class="form-control" id="Prodname" style="text-transform: uppercase" name="Prodname" placeholder="Product Name" required />
+        {% endif %}
+      </div>
+
+      <div class="col-md-4 my-3">
+        <label for="exampleFormControlInput1">Category </label>
+        {% if pree %}
+        <input type="text" class="form-control"  value="{{pree.category}}" readonly />
+        {% else %}
+        <select name="category" id="id_category" class="select form-control">
+
+
+          {% for a in categories %}
+          <option value="{{a.name}}">{{ a }}</option>
+          {% endfor %}
+        </select>
+        {% endif %}
+      </div>
+      <div class="col-md-4 my-3">
+        <label for="exampleFormControlInput1">Brand </label>
+        {% if pree %}
+        <input type="text" class="form-control"  value="{{pree.brand}}" readonly />
+        {% else %}
+        <select name="brand" id="id_brand" class="select form-control">
+
+
+          {% for b in brands %}
+          <option value="{{b.name}}">{{ b }}</option>
+          {% endfor %}
+        </select>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 my-3">
+        <label for="exampleFormControlInput1">Bid Start Price</label>
+        {% if pree %}
+        <input type="text" class="form-control" value="{{pree.price}}" readonly />
+
+        {% else %}
+        <input type="text" class="form-control" id="sp" name="sp" placeholder="Start Bid Price" min="0.1" step="0.1" required />
+        {% endif %}
+      </div>
+
+      <div class="col-md-4 my-3">
+        <label for="exampleFormControlInput1">Product Reference Number/Code/URL </label>
+        {% if pree %}
+        <input type="text" class="form-control" style="text-transform: uppercase" value="{{pree.product_ref_no}}" readonly />
+        {% else %}
+      <input type="text" class="form-control" style="text-transform: uppercase" id="pdn" name="pdn" placeholder="Product Reference Number/Code/URL" />
+      {% endif %}
+        
+      </div>
+
+      <div class="col-md-4">
+        <label for="exampleFormControlInput1">Quantity</label>
+        {% if pree %}
+        <div class="ltn__product-details-menu-2">
+          <ul>
+            <li>
+        <div class="cart-plus-minus">
+        <input type="text" class="cart-plus-minus-box" name="qtybutton"  value="{{pree.quantity}}" />
+        <script>
+
+          $(".cart-plus-minus").prepend('<div class="dec qtybutton">-</div>');
+          $(".cart-plus-minus").append('<div class="inc qtybutton">+</div>');
+          $(".qtybutton").on("click", function() {
+              var $button = $(this);
+              var oldValue = $button.parent().find("input").val();
+              var newValue = $button.parent().find("input").val();
+              if ($button.text() == "+") {
+                  var newVal = parseFloat(oldValue) + parseFloat('{{pree.step_up_quantity}}');
+              } 
+              else {
+                  if (oldValue > parseFloat('{{pree.quantity}}')) {
+                      var newVal = parseFloat(oldValue) - parseFloat('{{pree.step_up_quantity}}');
+                  } 
+                  else {
+                      newVal = parseFloat('{{pree.quantity}}');
+                  }
+              }
+              $button.parent().find("input").val(newVal);
+          });
+      </script>
+    </div>
+  </li>
+</ul>
+  </div>
+        {% else %}
+        <input type="number" class="form-control" id="Quantity" name="Quantity" placeholder="Quantity" min="0" required />
+
+        {% endif %}
+
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4">
+    <div class="form-group">
+      
+    </div>
+  </div>
+ 
+</div>
+    <div class="row">
+      <div class="col-md-12 my-3">
+        <label for="exampleFormControlInput1">Delivery Address* &nbsp;<span><i class="fas fa-info-circle" title="Select your State"></i></span></label>
+        <input type="text" class="form-control" style="text-transform: uppercase" id="deladd" name="deladd" placeholder="Delivery Address" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 my-3">
+        <label for="exampleFormControlInput1">Delivery Person Contact Number<span>*</span><span> &nbsp;<i class="fas fa-info-circle" title="Delivery Person Contact Number"></i></span></label>
+        <input type="text" class="form-control" id="delcon" name="delcon" onkeypress="return onlyNumberKey(event)" placeholder="Delivery Contact" maxlength="10"
+          required />
+        
+      </div>
+      <div class="col-md-6 my-3">
+        <label for="exampleFormControlInput1">Delivery Pincode<span>*</span><span> &nbsp;<i class="fas fa-info-circle" title="Delivery Area PinCode"></i></span></label>
+        <input type="hidden" class="form-control" id="amount" name="amount" value = 200 />
+        
+        <input type="text" class="form-control" id="delpin" name="delpin" onkeypress="return onlyNumberKey(event)" placeholder="Delivery Pincode" maxlength="6" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 my-3">
+        <div class="card">
+          <div class="card-body">
+            Important Notes
+            <ol>
+              <li>
+                 if final bid < 95% of initial value, you .... to confirm/place order or your security amount will not be refunded.
+                 
+                 if final bid not < 95% of initial value, then you may choose not to place order and your security amount will not refunded.
+              </li>
+              <li>
+                 You will get 3 days of time to place order after bidding is complete, else you will lose your security amount.
+              </li><li>
+                 Seller will send you Material within 15 days of order payment/placement.
+              </li><li>
+                 You will get max 3 days to check and report if any issues with Material with us. After that order amout will be ....... to seller and no claims from your side will be accepted.
+              </li><li>
+                 in Case L1 seller not able to accept/supply order, we will contact you. if L2 seller for your material if he accepts, you might need to pay additional charges if any for order or you can cancel the order. AAmount will be refunded if order cancelled.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group my-3">
+      <button role="submit" class="btn btn-primary" style="background:#000000; border:#000000;"> Pay Now and Submit</button>
+     
+    </div>
+
+    
+
+  </div>
+  </div>
+</form>
+<form method="post">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+  var options = {
+      key: "rzp_test_pTZOyjXKteceyT",
+      amount: {{razorpay_order.amount}}, 
+      currency: "INR",
+      name: "OrderForSure",
+      description: "Test Transaction",
+      image: "{% static 'img/logoj.png' %}",
+      order_id: "{{razorpay_order.id}}",
+      callback_url: "{{callback_url}}",
+      redirect: true,
+      prefill: {
+          "name": "Gaurav Kumar",
+          "email": "gaurav.kumar@example.com",
+          "contact": "9999999999"
+      },
+      notes: {
+          "address": "Razorpay Corporate Office"
+      },
+      theme: {
+          "color": "#3399cc"
+      }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+  </script>
+
+</form>
+
+{% block js %} 
+
+
+
+{% endblock js %}
+
+
+{% endblock %}

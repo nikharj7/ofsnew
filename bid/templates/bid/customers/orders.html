@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} {% block content %}
+
+<h2 class="mb-3">My Orders</h2>
+{% if eee %}
+<a href="{{eee.url}}">Download Invoice</a>
+{% else %}
+{% if orders %}
+{% for requirement in orders%}
+<div class="container my-3">
+  <div class="card" style="border-top: 3px solid #e1fb83cb">
+    <div class="clearfix"></div>
+
+    <div class="card-body">
+      
+     
+            <p><strong>| Bid ID: {{requirement.bid_id}}</strong></p>
+           
+
+      <hr style="margin:5px;">
+      <div class="row">
+        <div class="col-md-4" style="padding-left: 26px">
+          <div class="row my-2">
+            <strong>Product Name : {{ requirement.name }}</strong>
+          </div>
+        
+          <div class="row my-2">
+            <strong>Quantity : {{ requirement.quantity }}</strong>
+          </div>
+        
+        </div>
+        <div class="col-md-4" style="padding-left: 26px">
+          <div class="row my-2"><strong>Payment Status : {{ requirement.customer_payment_status }}</strong></div>
+         
+          <div class="row my-2">
+            <strong>Expected Delivery Days : {{requirement.expected_delivery }}</strong>
+          </div>
+        
+          
+        </div>
+        <div class="col-md-4" style="padding-left: 26px">
+            
+            <div class="row my-2">
+              <strong>Order Amount : ₹{{requirement.order_amount }}  </strong></div>
+        
+           {% if requirement.customer_payment_status == "CHECKING FOR TRANSACTION" %}
+           <div class="row my-2"><strong>Order Status : Confirming Payment</strong> </div> 
+           {% elif requirement.payment_status == "TRANSACTION APPROVED" %}
+           <div class="row my-2"><strong>Order Status : Dispatched</strong> </div>
+           {%endif%}
+           <div class="row my-2"><strong>Seller : {{requirement.vendor_id}} </strong></div>
+
+              
+          
+            
+         
+          
+        </div>
+        
+        
+          <div class="clearfix"></div>
+        </div>
+        <hr style="margin:5px;">
+        {% if requirement.customer_payment_status == "NOT PAID"%}
+        <a
+          href="{% url 'customers:customerpayment' requirement.order_id %}"
+          class="btn btn-primary" style="background:#000000; border:#000000;"
+          >Complete Order
+        </a>
+
+        {% endif %}
+        {% if requirement.customer_payment_status == "CHECKING FOR TRANSACTION"  %}
+        <strong style="color:#000000;">Wait while we are checking for your transaction.</strong>
+        {% endif %}
+          <form action="" method="post">{% csrf_token %}
+          {% if requirement.customer_payment_status == "TRANSACTION APPROVED"  %}
+          
+           {% if requirement.completed == True %}
+           <input type="hidden" name="download" value="{{requirement.bid_id}}">
+            <button type="submit" class="btn btn-primary" style="background:#000000; border:#000000;">Download Invoice</button>
+         {% else %}
+         <strong style="color:#000000;">Vendor preparing your order, Once the order is prepared we sent you invoice on email or you can download from here.</strong>
+         <strong style="color:#000000;">if you don't get invoice Please contact us within 3 days after Payment.</strong>
+         {% endif %}
+          
+          {% endif %}
+          </form>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %} 
+  {% else %}
+  <div class="card" style="border-top: 3px solid #e1fb83cb">
+    <div class="clearfix"></div>
+
+    <div class="card-body">
+      <h6 style="text-align: center;">No Orders Yet....!!</h6>
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
+  {% endblock %}
+

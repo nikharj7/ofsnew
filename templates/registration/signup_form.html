@@ -1,0 +1,107 @@
+{% extends 'extra.html' %}
+{% load static %}
+ {% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} 
+{% block content%}
+<div class="container h-100 my-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-6">
+<!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal_header" style="padding:25px 50px;">
+            <h4 style="text-align:center;font-weight: 600;  color:white;" ><span class="glyphicon glyphicon-lock"></span> Register</h4>
+        </div>
+    <div class="modal-body input-style"  style="padding:40px 50px;">
+        <form role="form" method="post" nonvalidate> {% csrf_token %}
+            
+
+            <div class="form-group">
+                <label for="email"><i class="fa fa-envelope" style="color:#000000! important;"></i> Email</label>
+                <input type="email" class="form-control" id="id_email" name="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fa fa-lock" style="color:#000000! important;"></i> Password</label>
+                <input type="password" class="form-control" id="id_password1" name="password1" placeholder="Enter password" required minlength="6">
+            </div>
+            <div class="form-group">
+              <label for="password"><i class="fa fa-lock" style="color:#000000! important;"></i>Confirm Password</label>
+              <input type="password" class="form-control" id="id_password2" name="password2" placeholder="Enter password" required minlength="6" >
+          </div>
+           
+            <div class="checkbox">
+                <label><input type="checkbox" value="" checked required style="color:#000000! important;"><span class="policy_agreement"  > I agree to OrderForSure's <span class='link_style' style="color:#000000! important;"><a href = "{% url 'Privacy_Policy' %}">Privacy Policy</a> , <a href = "{% url 'terms_and_conditions' %}">T&C </a></span></span></label>
+            </div>
+            <button type="submit" class="btn btn-block signup_btn" style="color:white! important;"><span class="glyphicon glyphicon-off"></span> Create Account</button>
+        </form>
+        <div class="modal-footer d-flex justify-content-center">
+            <h6>Already have an account?</h6><h6 class="link_style" style="color:#000000! important;"><a class='link_style text-reset' href="{% url 'login'%}">Login</a></h6>
+        </div>		  
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% comment %} 
+  <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-xl-6"> {% endcomment %}
+  <!-- Modal content-->
+      {% comment %} <div class="modal-content">
+          <div class="modal_header" style="padding:25px 50px;">
+              <h4 style="text-align:center;font-weight: 600;  color:white;" ><span class="glyphicon glyphicon-lock"></span> Register</h4>
+          </div>
+      <div class="modal-body input-style"  style="padding:40px 50px;">
+          <form role="form" > {% csrf_token %}
+              
+
+              <div class="form-group">
+                  <label for="email"><i class="fa fa-envelope" style="color:#000000! important;"></i> Email</label>
+                  <input type="email" class="form-control" id="id_email" name="email" placeholder="Enter email" required>
+              </div>
+              <div class="form-group">
+                  <label for="password"><i class="fa fa-lock" style="color:#000000! important;"></i> Password</label>
+                  <input type="password" class="form-control" id="id_password1" name="password1" placeholder="Enter password" required minlength="6" maxlength="8">
+              </div>
+              <div class="form-group">
+                <label for="password"><i class="fa fa-lock" style="color:#000000! important;"></i>Confirm Password</label>
+                <input type="password" class="form-control" id="id_password2" name="password2" placeholder="Enter password" required minlength="6" maxlength="8">
+            </div>
+             
+              <div class="checkbox">
+                  <label><input type="checkbox" value="" checked required style="color:#000000! important;"><span class="policy_agreement"  > I agree to OrderForSure's <span class='link_style' style="color:#000000! important;">Privacy Policy , T&C , Content Policy</span></span></label>
+              </div>
+              <button type="submit" class="btn btn-block signup_btn" style="color:white! important;"><span class="glyphicon glyphicon-off"></span> Create Account</button>
+          </form>
+          <div class="modal-footer d-flex justify-content-center">
+              <h6>Already have an account?</h6><h6 class="link_style" style="color:#000000! important;"><a class='link_style text-reset' href="{% url 'login'%}">Login</a></h6>
+          </div>		  
+      </div>
+  </div>
+  </div>
+  </div>
+</div> {% endcomment %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %} {% load static%} {% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} {% block content %}
+
+<div class="container my-3">
+  <h2 class="mb-3">My Bids</h2>
+  {% if nav %} {% for requirement in nav %}
+  <div class="card" style="border-top: 3px solid #fbb203">
+    <div class="clearfix"></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Bid ID: {{requirement.product_id}}</strong></p>
+        </div>
+        <div class="col-md-6">
+          {% if requirement.requirement_status == "APPROVED" %}
+          {% if requirement.Ordered == "YES" %}
+          <p style="color: red"><strong>Bid Closed</strong></p>
+          {% else %}
+          <p style="color: red">
+            <strong>Bid end in : {{requirement.bidding_expiry|date:"M d, Y H:i:s A"}}</strong
+            >
+          </p>
+          {% endif %}
+          {%endif%}
+          <div class="col-md-6">
+            {% if requirement.requirement_status == "DISABLED" %}
+            <p style="color: red"><strong> Bid Closed. </strong></p>
+            {%endif%}
+          </div>
+        </div>
+        <hr style="margin: 5px; width: 96%" />
+        <div class="row my-3">
+          {% if requirement.product_image_1 %}
+          <div class="col-md-3">
+            <img
+              src="{{requirement.product_image_1.url}}"
+              style="height: 200px; border: 1px solid; width: 192px"
+              alt="Product Image"
+            />
+          </div>
+          {% else %}
+          <p></p>
+          {% endif %}
+
+          <div class="col-md-3" style="padding-left: 26px">
+            <div class="row my-4">
+              <strong
+                >Product Name : {{ requirement.name|safe | truncatechars:15}}</strong
+              >
+            </div>
+            <br />
+            <div class="row my-4">
+              <strong>Quantity : {{ requirement.quantity }}</strong>
+            </div>
+            <br />
+            <div class="row my-4">
+              <strong
+                >Expected Delivery Days : {{requirement.Exp_delivery_days}}</strong
+              >
+            </div>
+          </div>
+          <div class="col-md-3" style="padding-left: 26px">
+            <div class="row my-4">
+              <strong>Category : {{ requirement.category }}</strong>
+            </div>
+            <br />
+            <div class="row my-4">
+              <strong>Current Bid Price : {{requirement.lowest_bid}}</strong>
+            </div>
+            <br />
+            <div class="row my-4">
+              <strong>Start Price : {{requirement.start_price}}</strong>
+            </div>
+          </div>
+          <div class="col-md-3" style="padding-left: 26px">
+            <div class="row my-4">
+              <strong>Brand : {{requirement.brand}}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="clearfix"></div>
+      </div>
+      <hr style="margin: 5px" />
+      <div class="col-md-12">
+        <div class="row my-2">
+          <strong>Description : {{requirement.description }}</strong>
+        </div>
+      </div>
+      <hr style="margin: 5px" />
+      {% if requirement.Ordered == "YES" %}
+      <p></p>
+      {% else %}
+     <a href="{% url 'vendors:requirement_detail' requirement.product_id  %}" class="btn btn-primary"
+      style="background: #000000; float:right;">Bid Now</a>
+      {% endif %}
+    </div> 
+  </div>
+  {%endfor%}
+  {% else %}
+  <div class="card" style="border-top: 3px solid #fbb203">
+    <div class="clearfix"></div>
+    <div class="card-body">
+  <h6 style="text-align: center;">No Bids Yet....!!</h6>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

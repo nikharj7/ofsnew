@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart %}
+{% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+ <div ><h2 style="text-align:center">CUSTOMER ORDER DETAIL </h2>
+  
+
+  <div class="container my-3">
+    <div class="card" style="border-top: 3px solid #e1fb83cb ;">
+  
+      <div class="clearfix"></div>
+      
+      <div class="card-body">
+       
+        <div class="row">
+          <div class="col-md-6" style="padding-left: 26px;">
+            <div class="row my-2"><strong>Product Name : {{ requirement_detail.name }}</strong></div>
+            <br>
+            <div class="row my-2"><strong>Product Quantity : {{ requirement_detail.quantity }}</strong></div>
+            
+          
+
+          </div>
+          <div class="col-md-6" style="padding-left: 26px;">
+            <div class="row my-2"><strong>Delivery Contact : {{requirement_detail.delivery_contact }}</strong> </div>
+            <br>
+            <div class="row my-2"><strong>Delivery Address : {{ requirement_detail.delivery_address }}</strong></div>
+           <br>
+            <div class="row my-2"><strong>Delivery Pincode : {{ requirement_detail.delivery_pincode }}</strong> </div>
+            
+           
+          </div>
+          
+          <div class="col-md-3">
+            
+              {% comment %} <img src="{{bid_details.product_image.url}}" style="height:200px;" alt="Image Provided by Seller"> {% endcomment %}
+              
+            
+          </div>
+          <div class="clearfix"></div>
+        </div>
+     
+        
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div ><h2 style="text-align:center">VENDOR DETAIL </h2>
+    {% comment %} <div style="text-align:center">
+      <a href="{% url 'customers:completeorder' bid_details.pk %}" class="btn btn-primary">Complete Order </a>
+    </div> {% endcomment %}
+  
+    <div class="container my-3">
+      <div class="card" style="border-top: 3px solid #e1fb83cb ;">
+    
+        <div class="clearfix"></div>
+        
+        <div class="card-body">
+         
+          <div class="row">
+            <div class="col-md-6" style="padding-left: 26px;">
+              
+              <div class="row my-2"><strong>Seller Organization : xxx{{ seo }}xxx</strong></div>
+              <br>
+              <div class="row my-2"><strong>Seller Address : xxx{{sea}}xxx</strong> </div>
+            </div>
+            <div class="col-md-6" style="padding-left: 26px;">
+              
+              <div class="row my-2"><strong>Seller GST_IN : xxx{{sgst}}xxx</strong>  </div>
+              <br>
+              <div class="row my-2"><strong>Seller PinCode : xxx{{spin}}xxx</strong>  </div>
+
+            </div>
+            <div class="col-md-4">
+              
+                {% comment %} <img src="{{bid_details.product_image.url}}" style="height:200px;" alt="Image Provided by Seller"> {% endcomment %}
+                
+              
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <hr style="margin:5px;">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row my-2"><strong>Total Amount : {{ order_amount }}</strong> </div>
+            </div>
+            <div class="col-md-6">
+              <div style="text-align:center">
+                <a href="{% url 'customers:completeorder' bid_details.pk %}" class="btn btn-primary" style="background:#000000; border:#000000;">Complete Order </a>
+              </div> 
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  
+  
+{% endblock %}

@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block head %}
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+
+  <script src="{% static 'js/plugins.js' %}"></script>
+  <!-- Main JS -->
+  <script src="{% static 'js/mainhome.js' %}"></script>
+
+
+
+
+
+{% endblock %} 
+{% block content %}
+
+   
+  
+{% if data.vendor_id%}
+
+
+<form >
+    
+    
+    <div class="container my-4">
+      
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Orgnization Name</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.Orgnization_Name}}
+          disabled
+          name="org"
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.Full_Name}}
+          disabled
+          name="fname"
+        
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.Address}}
+          disabled
+          name="address"
+        
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Pincode</label>
+        <input
+          type="number"
+          class="form-control"
+          value = {{data.Pincode}}
+          disabled
+          name="pincode"
+          
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">State</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.State}}
+          disabled
+          name="state"
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">City</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.City}}
+          disabled
+          name="city"
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">GST IN</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.GST_IN}}
+          disabled
+          name="gst"
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">License Number</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.License_Number}}
+          disabled
+          name="license"
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Banking Name</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.Banking_Name}}
+          disabled
+          name="license"
+          
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Account Number</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.Account_Number}}
+          disabled
+          name="license"
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">IFSC</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.IFSC}}
+          disabled
+          name="license"
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Branch</label>
+        <input
+          type="text"
+          class="form-control"
+          value = {{data.Branch}}
+          disabled
+          name="license"
+          
+        />
+      </div>
+      
+      
+    </div>
+  </form>
+
+    {% endif %}
+{% endblock %}

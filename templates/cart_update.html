@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %} {% block content %}
+<div class="container">
+<h2 class="mb-3">My Orders</h2>
+</div>
+{% if orders %}
+<div class="container my-3">
+    {% for requirement in orders%}
+    <div class="card" >
+        <div class="clearfix"></div>
+        
+        <div class="card-body">
+         
+              <strong>Order ID : {{requirement.order_id}}</strong>  
+                <hr style="margin:0px; padding:0px;">
+              <div class="row my-3">
+                <div class="col-md-4">
+                    Product : {{ requirement.name }}
+                </div>
+                <div class="col-md-4">
+                    Quantity : {{ requirement.quantity }}
+                </div>
+                <div class="col-md-4">
+                    Payment Status : {{ requirement.customer_payment_status }}
+                </div>
+              </div>
+              <hr style="margin:0px; padding:0px;">
+              
+              <div class="row my-3">
+                <div class="col-md-4">
+                    Expected Delivery : {{requirement.expected_delivery }}
+                </div>
+                <div class="col-md-4">
+                    Seller : {{requirement.vendor_id}}
+                </div>
+                <div class="col-md-4">
+                    Order Date : {{requirement.order_date}}
+                </div>
+              </div>
+                <hr style="margin:0px; padding:0px;">
+                {% if requirement.customer_payment_status == "CHECKING FOR TRANSACTION" %}
+
+              <p class="my-3"> <strong> Verifying your Transaction, Once we approved your transaction you are able to download Invoice. It takes 2-3 working days. </strong> </p>
+              {% endif %}
+              
+              {% if requirement.customer_payment_status == "TRANSACTION APPROVED" and requirement.completed == False  %}
+              <p class="my-3"> <strong> Your Transaction is approved, Once Vendor prepare the order you will be able to download invoice. </strong> </p>
+              {% endif %}
+
+              {% if requirement.completed == True and requirement.customer_payment_status == "TRANSACTION APPROVED" %}
+              <button class="theme-btn-2 btn btn-effect-2 my-3">Downoad Invoice</button>
+              {% endif %}
+        </div>
+    </div>
+    {% endfor %} 
+</div>
+{% else %}
+  <div class="card" style="border-top: 3px solid #e1fb83cb">
+    <div class="clearfix"></div>
+
+    <div class="card-body">
+      <h6 style="text-align: center;">No Orders Yet....!!</h6>
+    </div>
+  </div>
+  {% endif %}
+ 
+  {% endblock %}
+<!-- 
+  <div class="row">
+    <div class="col-md-4">
+      <div class="row my-2">
+        <strong>Product Name : </strong>&nbsp;<a></a>
+      </div>
+      <hr />
+      <div class="row my-2">
+        <strong>Quantity:</strong>&nbsp;
+      </div>
+      <hr />
+    </div>
+    <div class="col-md-4" style="padding-left: 26px">
+      <div class="row my-2"><strong> Your  </strong>&nbsp; </div>
+      <hr>
+      <div class="row my-2">
+        <strong></strong>&nbsp;<span
+          class="start_date"
+          ></span
+        >
+      </div>
+      <hr />
+      
+    </div>
+    <div class="col-md-4" style="padding-left: 26px">
+        
+        <div class="row my-2">
+          <strong> </strong>&nbsp;<span class="start_date"
+            >{{requirement.order_amount }} rs.</span></div>
+            <hr>
+       <div class="row my-2"><strong></div>
+
+          
+      
+        
+     
+      
+    </div>
+    
+    
+      <div class="clearfix"></div>
+    </div>
+    <hr>
+
+    
+      
+     <p>Vendor preparing your order, Once the order is prepared we sent you invoice on email or you can download from here.</p>
+     <p>if you don't get invoice Please contact us within 3 days after Payment.</p>
+    
+      
+   
+     
+  </div> -->

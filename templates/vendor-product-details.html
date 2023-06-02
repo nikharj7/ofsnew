@@ -1,0 +1,704 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} {{vendor_prods.name}}  {% endblock %}
+ {% block head %}
+
+
+
+    <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'css/stylehome.css'%}" />
+<!-- Responsive css -->
+<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/mainhome.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+
+<div class="body-wrapper my-4">
+
+
+
+
+    <!-- BREADCRUMB AREA END -->
+
+    <!-- SHOP DETAILS AREA START -->
+    <div class="ltn__shop-details-area pb-85">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="ltn__shop-details-inner mb-60">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="ltn__shop-details-img-gallery">
+                                    <div class="ltn__shop-details-large-img">
+                                        <div class="single-large-img">
+                                            {% if vendor_prods.image1 %}
+                                            <a href="{{vendor_prods.image1.url}}" data-rel="lightcase:myCollection">
+                                                <img src="{{vendor_prods.image1.url}}" alt="Image">
+                                            </a>
+                                            {% else %}
+                                            <a href="" data-rel="lightcase:myCollection">
+                                                <img src="{%static 'img/image.jpg'%}" alt="Image">
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-large-img">
+                                            {% if vendor_prods.image2 %}
+                                            <a href="{{vendor_prods.image2.url}}" data-rel="lightcase:myCollection">
+                                                <img src="{{vendor_prods.image2.url}}" alt="Image">
+                                            </a>
+                                           
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-large-img">
+                                            {% if vendor_prods.image3 %}
+                                            <a href="{{vendor_prods.image3.url}}" data-rel="lightcase:myCollection">
+                                                <img src="{{vendor_prods.image3.url}}" alt="Image">
+                                            </a>
+                                           
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-large-img">
+                                            {% if vendor_prods.image4 %}
+                                            <a href="{{vendor_prods.image4.url}}" data-rel="lightcase:myCollection">
+                                                <img src="{{vendor_prods.image4.url}}" alt="Image">
+                                            </a>
+                                            
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-large-img">
+                                            {% if vendor_prods.image5 %}
+                                            <a href="{{vendor_prods.image5.url}}" data-rel="lightcase:myCollection">
+                                                <img src="{{vendor_prods.image5.url}}" alt="Image">
+                                            </a>
+                                           
+                                            {% endif %}
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="ltn__shop-details-small-img slick-arrow-2">
+                                        <div class="single-small-img">
+                                            {% if vendor_prods.image1 %}
+                                            <img src="{{vendor_prods.image1.url}}" alt="Image">
+                                            {% else %}
+                                            <img src="{% static  'img/image.jpg' %}" alt="Image">
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-small-img">
+                                            {% if vendor_prods.image2 %}
+                                            <img src="{{vendor_prods.image2.url}}" alt="Image">
+                                           
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-small-img">
+                                            {% if vendor_prods.image3 %}
+                                            <img src="{{vendor_prods.image3.url}}" alt="Image">
+                                           
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-small-img">
+                                            {% if vendor_prods.image4 %}
+                                            <img src="{{vendor_prods.image4.url}}" alt="Image">
+                                           
+                                            {% endif %}
+                                        </div>
+                                        <div class="single-small-img">
+                                            {% if vendor_prods.image5 %}
+                                            <img src="{{vendor_prods.image5.url}}" alt="Image">
+                                          
+                                            {% endif %}
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-5">
+                                {% if user.is_authenticated %}
+                                {% if user.is_customer %}
+                                <form method="post" action="{% url 'addtocart' %}">{% csrf_token %}
+                        
+                                
+                                <div class="modal-product-info shop-details-info pl-0">
+                                    
+                                    <h3>{{vendor_prods.name}}</h3>
+                                    <div class="product-price">
+                                        
+           
+                                        <span>₹{{vendor_prods.price}}</span>
+                                        <del>₹{{vendor_prods.mrp}}</del>
+                                        
+
+              
+                                      
+                                    </div>
+                                    <small> (GST {{vendor_prods.GST}}% Exclude)</small>
+                                    <div class="modal-product-meta ltn__product-details-menu-1">
+                                        <ul>
+                                            <li>
+                                                <strong>Categories:</strong> 
+                                                <span>
+                                                    <a>{{vendor_prods.category}}</a>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <strong>Brands:</strong> 
+                                                <span>
+                                                    <a>{{vendor_prods.Brand}}</a>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <strong>GST:</strong> 
+                                                <span>
+                                                    <a>{{vendor_prods.GST}}%</a>
+                                                </span>
+                                            </li>
+                                            <hr>
+                                            <li>
+                                                <span>
+                                                    {{vendor_prods.short_description|safe|escape}}
+
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="ltn__product-details-menu-2">
+                                        <ul>
+                                            <li>
+                                                <div class="cart-plus-minus">
+                                                    <input type="text" value="{{vendor_prods.quantity}}" name="qwe" class="cart-plus-minus-box">
+                                                    <input type="hidden" value="{{vendor_prods.id}}" name="carttt">
+
+                                            </div>
+                                                
+                                                <script>
+
+                                                    $(".cart-plus-minus").prepend('<div class="dec qtybutton">-</div>');
+                                                    $(".cart-plus-minus").append('<div class="inc qtybutton">+</div>');
+                                                    $(".qtybutton").on("click", function() {
+                                                        var $button = $(this);
+                                                        var oldValue = $button.parent().find("input").val();
+                                                        var newValue = $button.parent().find("input").val();
+                                                        if ($button.text() == "+") {
+                                                            var newVal = parseFloat(oldValue) + parseFloat('{{vendor_prods.step_up_quantity}}');
+                                                        } 
+                                                        else {
+                                                            if (oldValue > parseFloat('{{vendor_prods.quantity}}')) {
+                                                                var newVal = parseFloat(oldValue) - parseFloat('{{vendor_prods.step_up_quantity}}');
+                                                            } 
+                                                            else {
+                                                                newVal = parseFloat('{{vendor_prods.quantity}}');
+                                                            }
+                                                        }
+                                                        $button.parent().find("input").val(newVal);
+                                                    });
+                                                </script>
+                                            </li>
+                                            
+                                            
+                                            <li>
+                                                
+                                              
+                                                <button type="submit" class="btn theme-btn-2 btn-effect-2"><i class="fas fa-shopping-cart"></i>Add to Cart</button>
+                                            </form>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                    {% else %}
+                                    <form method="post" action="">{% csrf_token %}
+                        
+                                
+                                        <div class="modal-product-info shop-details-info pl-0">
+                                            
+                                            <h3>{{vendor_prods.name}}</h3>
+                                            <div class="product-price">
+                                                
+                   
+                                                <span>₹{{vendor_prods.price}}</span>
+                                                <del>₹{{vendor_prods.mrp}}</del>
+                      
+                                              
+                                            </div>
+                                            <small> (GST {{vendor_prods.GST}}% Exclude)</small>
+                                            <div class="modal-product-meta ltn__product-details-menu-1">
+                                                <ul>
+                                                    <li>
+                                                        <strong>Categories:</strong> 
+                                                        <span>
+                                                            <a>{{vendor_prods.category}}</a>
+                                                        </span>
+                                                    </li>
+            
+                                                    <li>
+                                                        <strong>Brands:</strong> 
+                                                        <span>
+                                                            <a>{{vendor_prods.Brand}}</a>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <strong>GST:</strong> 
+                                                        <span>
+                                                            <a>{{vendor_prods.GST}}%</a>
+                                                        </span>
+                                                    </li>
+                                                    <hr>
+                                                    <li>
+                                                        <span>
+                                                            {{vendor_prods.short_description|safe|escape}}
+                                                    
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="ltn__product-details-menu-2">
+                                                <ul>
+                                                    <li>
+                                                        <div class="cart-plus-minus">
+                                                            <input type="text" value="{{vendor_prods.quantity}}" name="qwe" class="cart-plus-minus-box">
+                                                            <input type="hidden" value="{{vendor_prods.id}}" name="carttt">
+        
+                                                    </div>
+                                                        
+                                                        <script>
+        
+                                                            $(".cart-plus-minus").prepend('<div class="dec qtybutton">-</div>');
+                                                            $(".cart-plus-minus").append('<div class="inc qtybutton">+</div>');
+                                                            $(".qtybutton").on("click", function() {
+                                                                var $button = $(this);
+                                                                var oldValue = $button.parent().find("input").val();
+                                                                var newValue = $button.parent().find("input").val();
+                                                                if ($button.text() == "+") {
+                                                                    var newVal = parseFloat(oldValue) + parseFloat('{{vendor_prods.step_up_quantity}}');
+                                                                } 
+                                                                else {
+                                                                    if (oldValue > parseFloat('{{vendor_prods.quantity}}')) {
+                                                                        var newVal = parseFloat(oldValue) - parseFloat('{{vendor_prods.step_up_quantity}}');
+                                                                    } 
+                                                                    else {
+                                                                        newVal = parseFloat('{{vendor_prods.quantity}}');
+                                                                    }
+                                                                }
+                                                                $button.parent().find("input").val(newVal);
+                                                            });
+                                                        </script>
+                                                    </li>
+                                                    
+                                                    
+                                                    <li>
+                                                        
+                                                      
+                                                        <button type="submit" class="btn theme-btn-2 btn-effect-2"><i class="fas fa-shopping-cart"></i>Add to Cart</button>
+                                                    </form>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                    {% endif %}
+                                    {% else %}
+                                    <form method="post" action="">{% csrf_token %}
+                        
+                                
+                                        <div class="modal-product-info shop-details-info pl-0">
+                                            
+                                            <h3>{{vendor_prods.name}}</h3>
+                                            <div class="product-price">
+                                                
+                   
+                                                <span>₹{{vendor_prods.price}}</span>
+                                                <del>₹{{vendor_prods.mrp}}</del>
+
+                      
+                                              
+                                            </div>
+                                            <small> (GST {{vendor_prods.GST}}% Exclude)</small>
+                                            <div class="modal-product-meta ltn__product-details-menu-1">
+                                                <ul>
+                                                    <li>
+                                                        <strong>Categories:</strong> 
+                                                        <span>
+                                                            <a>{{vendor_prods.category}}</a>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <strong>Brands:</strong> 
+                                                        <span>
+                                                            <a>{{vendor_prods.Brand}}</a>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <strong>GST:</strong> 
+                                                        <span>
+                                                            <a>{{vendor_prods.GST}}%</a>
+                                                        </span>
+                                                    </li>
+                                                    <hr>
+                                                    <li>
+                                                        <span>
+                                                            {{vendor_prods.short_description|safe|escape}}
+
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="ltn__product-details-menu-2">
+                                                <ul>
+                                                    <li>
+                                                        <div class="cart-plus-minus">
+                                                            <input type="text" value="{{vendor_prods.quantity}}" name="qwe" class="cart-plus-minus-box">
+                                                            <input type="hidden" value="{{vendor_prods.id}}" name="carttt">
+                                                    </div>
+                                                            
+                                                        
+                                                        <script>
+        
+                                                            $(".cart-plus-minus").prepend('<div class="dec qtybutton">-</div>');
+                                                            $(".cart-plus-minus").append('<div class="inc qtybutton">+</div>');
+                                                            $(".qtybutton").on("click", function() {
+                                                                var $button = $(this);
+                                                                var oldValue = $button.parent().find("input").val();
+                                                                var newValue = $button.parent().find("input").val();
+                                                                if ($button.text() == "+") {
+                                                                    var newVal = parseFloat(oldValue) + parseFloat('{{vendor_prods.step_up_quantity}}');
+                                                                } 
+                                                                else {
+                                                                    if (oldValue > parseFloat('{{vendor_prods.quantity}}')) {
+                                                                        var newVal = parseFloat(oldValue) - parseFloat('{{vendor_prods.step_up_quantity}}');
+                                                                    } 
+                                                                    else {
+                                                                        newVal = parseFloat('{{vendor_prods.quantity}}');
+                                                                    }
+                                                                }
+                                                                $button.parent().find("input").val(newVal);
+                                                            });
+                                                        </script>
+                                                    </li>
+                                                    
+                                                    
+                                                    <li>
+                                                        
+                                                      
+                                                        <button type="submit" class="btn theme-btn-2 btn-effect-2"> <i class="fas fa-shopping-cart"></i>Add to Cart</button>
+                                                    </form>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                    {% endif %}
+                                    
+                                    
+                                    <hr>
+                                   
+                                 
+                                    <div class="ltn__safe-checkout">
+                                        {% if user.is_authenticated %}
+                                    {% if user.is_customer %}
+                                    {% if data.status == True %}
+                                    <button type="button" class="btn theme-btn-2 btn-effect-2" data-toggle="modal" data-target="#exampleModal">
+                                        Start Bidding
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background:#000000; color:white;">
+                                                    <h5 class="modal-title" id="exampleModalLabel" style="color:white;" >Important Notes</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                                        <span aria-hidden="true" style="color:white;" >&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="ltn__banner-area mt-120---">
+                                                        <div class="container">
+                                                          <div class="row ltn__custom-gutter--- justify-content-center">
+                                                            <div class="col-lg-4 col-sm-6">
+                                                                <span
+                                                                  ><img
+                                                                    alt="image"
+                                                                    src="{%static 'img/how-work1.png'%}"
+                                                                    class="work-img mb-2"
+                                                                /></span>
+                                                          
+                                                                Register Yourself
+                                                            </div>
+                                                            <div class="col-lg-4 col-sm-6">
+                                                             
+                                                                <span
+                                                                  ><img
+                                                                    alt="image"
+                                                                    src="{%static 'img/how-work2.png'%}"
+                                                                    class="work-img mb-2"
+                                                                /></span>
+                                                             
+                                                            Select Item, Buy or Start Bid
+                                                            </div>
+                                                            <div class="col-lg-4 col-sm-6">
+                                                           
+                                                                <span
+                                                                  ><img
+                                                                    alt="image"
+                                                                    src="{%static 'img/how-work3.png'%}"
+                                                                    class="work-img mb-2"
+                                                                /></span>
+                                                            
+                                                                Order Through Store or Bid
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <hr>
+                                                    <ol>
+                                                        <li><strong>
+                                                         Minimum Order value for Bidding is ₹20,000 </strong>
+                                                    </li>
+                                                    <li><strong>
+                                                        Delivery time upto 15 days from order place.</strong>
+                                                    </li> 
+                                                    <li><strong>
+                                                        Payment Terms - Advance on Order Placement.</strong>
+                                                    </li>
+                                                     <li><strong>
+                                                         Charges - Charge ₹ x to make sure genunity of your requirement. which will refunded or adust in Order Amount.</strong>
+                                                    </li>
+                                                   
+                                                    
+                                                </ol>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form method="post" action=""> {% csrf_token %}
+                                                    <input type="submit" class="btn theme-btn-2 btn-effect-2" style="background:#000000; color:white; width:100px;" value="I Agree">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <button type="button" class="btn theme-btn-2 btn-effect-2" data-toggle="modal" data-target="#exampleModal">
+                                        Start Bidding
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background:#000000; color:white;">
+                                                    <h5 class="modal-title" id="exampleModalLabel" style="color:white;" >Important Notes</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                                        <span aria-hidden="true" style="color:white;" >&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul>
+                                                        <li>
+                                                        Wait While your profile is on approval. Once profile is approved you are able to bid.
+                                                    </li>
+                                                    
+                                                    
+                                                </ul>
+                                            </div>
+                                           
+                                        </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% else %}
+                                    <button type="button" class="btn theme-btn-2 btn-effect-2" data-toggle="modal" data-target="#exampleModal">
+                                        Start Bidding
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background:#000000; color:white;">
+                                                    <h5 class="modal-title" id="exampleModalLabel" style="color:white;" >Important Notes</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                                        <span aria-hidden="true" style="color:white;" >&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul>
+                                                        <li>
+                                                        You have to be a customer for bidding.
+                                                    </li>
+                                                    
+                                                    
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% else %}
+                                    <button type="button" class="btn theme-btn-2 btn-effect-2" data-toggle="modal" data-target="#exampleModal">
+                                        Start Bidding
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background:#000000; color:white;">
+                                                    <h5 class="modal-title" id="exampleModalLabel" style="color:white;" >Important Notes</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                                        <span aria-hidden="true" style="color:white;" >&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul>
+                                                        <li>
+                                                        Please Login/Register for Bidding.
+                                                    </li>
+                                                    
+                                                    
+                                                </ul>
+                                            </div>
+                                            <div class="modal-footer">
+                                                    <a href="{% url 'login' %}" class="btn theme-btn-2 btn-effect-2">I Agree</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            
+                       
+                         </div>
+                        </div>
+                    </div>
+                    <!-- Shop Tab Start -->
+                    {% if  vendor_prods.description %}
+                    <div class="ltn__shop-details-tab-inner ltn__shop-details-tab-inner-2">
+                        <div class="ltn__shop-details-tab-menu">
+                            <div class="nav">
+                                <a class="active show" data-bs-toggle="tab" href="#liton_tab_details_1_1">Description</a>
+                                
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="liton_tab_details_1_1">
+                                <div class="ltn__shop-details-tab-content-inner">
+                                    {{vendor_prods.description|safe|escape }}
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Shop Tab End -->
+                </div>
+                <div class="col-lg-3">
+                   
+                    <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
+                        <!-- Top Rated Product Widget -->
+                        
+                        <!-- Banner Widget -->
+                        <div class="widget ltn__banner-widget">
+                            <a href="{% url 'Store' %}"><img src="{% static 'img/2.jpg' %}" alt="#" ></a>
+                        </div>
+                    </aside>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+    <!-- SHOP DETAILS AREA END -->
+    
+</div>
+    <!-- PRODUCT SLIDER AREA START -->
+    <div class="ltn__product-slider-area ltn__product-gutter pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title-area ltn__section-title-2">
+                        <h4 class="title-2">Related Products<span>.</span></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row ltn__related-product-slider-one-active slick-arrow-1">
+                <!-- ltn__product-item -->
+                
+                {% for q in allprod %}
+                <div class="col-lg-12">
+
+                    <div class="ltn__product-item ltn__product-item-3 text-center" style="height:325px;">
+                        <div class="product-img">
+                            {% if q.image1 %}
+                            <a href="{{q.slug}}"><center><img src="{{q.image1.url}}" class="center" alt="#" style="height:200px;"></center></a>
+                            {% else %}
+                            <a href="{{q.slug}}"><center><img src="{% static 'img/image.jpg'%}" class="center" alt="#"  style="height:200px;"></center></a>
+
+                            {% endif %}
+                            <div class="product-badge">
+                                <ul>
+                                    <li class="sale-badge">New</li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                        <div class="product-info">
+                           
+                            <h2 class="product-title"><a href="{{q.slug}}">{{q.name}}</a></h2>
+                            <div class="product-price">
+                                {% if user.is_authenticated %}
+                {% if user.is_customer %}
+            
+                <span>&#8377;{{q.price}}</span>
+                <del>{{q.mrp}}</del>
+               
+                {% endif %}
+                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!--  -->
+            </div>
+        </div>
+    </div>
+                
+             
+            </div>
+        </div>
+    </div>
+    <!-- SHOP DETAILS AREA END -->
+
+  
+
+  
+
+   
+
+
+
+</div>
+<!-- Body main wrapper end -->
+
+{% endblock %}
+
+
+
