@@ -1,0 +1,1 @@
+web: gunicorn medinatal.wsgi --log-file -
